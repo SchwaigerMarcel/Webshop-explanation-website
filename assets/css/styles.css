@@ -1,0 +1,67 @@
+/* Custom styles for E-Commerce System Guide */
+:root{
+  --brand:#0d6efd;
+  --accent:#6f42c1;
+  --muted:#6c757d;
+}
+
+body{
+  background: #f8f9fb;
+  color: #212529;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Header / Footer edge */
+header.site-header, footer.site-footer{
+  border-top: 6px solid rgba(13,110,253,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.hero{
+  padding: 3.5rem 0;
+}
+
+.brand-color{
+  color: var(--brand);
+}
+
+.accent-color{
+  color: var(--accent);
+}
+
+/* Cards: light shadow and hover lift */
+.card{
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 6px 20px rgba(25, 33, 47, 0.06);
+}
+
+.card .card-title{
+  color: var(--brand);
+}
+
+.card .badge-custom{
+  background: linear-gradient(90deg,var(--brand),var(--accent));
+  color:#fff;
+}
+
+/* Buttons subtle transition */
+.btn{ transition: transform 0.15s ease; }
+.btn:active{ transform: translateY(1px); }
+
+/* Grid spacing for the index cards */
+.shop-grid { gap: 1.5rem; }
+
+/* Footer small print */
+.site-footer p{ margin-bottom: 0; color: #6c757d; }
+
+/* Responsive hero text */
+.hero .lead{ font-size: 1.05rem; }
+
+/* Accessible focus outline */
+:focus{ outline: 3px solid rgba(13,110,253,0.12); outline-offset: 2px; }
+
+/* Minor utility */
+.muted{ color: var(--muted); }
+
+/* Icon spacing */
+.bi{ margin-right: .35rem; }
