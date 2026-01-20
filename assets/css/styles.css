@@ -94,24 +94,15 @@ header.site-header, footer.site-footer{
   color:#fff;
 }
 
-/* Buttons subtle transition */
 .btn{ transition: transform 0.15s ease; }
 .btn:active{ transform: translateY(1px); }
 
-/* Grid spacing for the index cards */
-.shop-grid { gap: 1.5rem; }
-
-/* Footer small print */
 .site-footer p{ margin-bottom: 0; color: #6c757d; }
 
-/* Responsive hero text */
 .hero .lead{ font-size: 1.05rem; }
 
-/* Accessible focus outline */
 :focus{ outline: 3px solid rgba(13,110,253,0.12); outline-offset: 2px; }
 
-/* Minor utility */
 .muted{ color: var(--muted); }
 
-/* Icon spacing */
 .bi{ margin-right: .35rem; }
