@@ -77,6 +77,25 @@ header.site-header, footer.site-footer{
   font-size: 1.25rem;
 }
 
+#question{
+  text-align: center;
+}
+
+#answers{
+  padding-top: 1.5rem;
+  margin: 0 auto;
+}
+
+#finderCard{
+  margin-top: 1.5rem;
+  margin: 0 auto;
+}
+
+#finderExplanation{
+  margin-top: 1.5rem;
+  margin: 0 auto;
+}
+
 .brand-color{
   color: var(--brand);
 }
