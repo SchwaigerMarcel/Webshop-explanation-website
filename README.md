@@ -41,6 +41,8 @@ sylius.html  → Detail page about sylius
 
 woocommerce.html  → Detail page about woocommerce
 
+shopfinder.html  → dynamic page helping with finding the perfect webshop for the user
+
 Each page has the same header and footer for consistent navigation.
 
 5. Design and Layout
@@ -58,12 +60,16 @@ Same on all pages: header(name of the website), information
 
 6. Milestones
 
-Week 1: Idea generation, planning the website structure, researching content
+Step 1: Idea generation, planning the website structure, researching content
 
-Week 2: Creating basic HTML pages and implementing navigation
+Step 2: Creating basic HTML pages and implementing navigation
 
-Week 3: Filling pages with text and tables
+Step 3: Filling pages with text and tables
 
-Week 4: CSS design, colors, layout, mobile optimization
+Step 4: CSS design, colors, layout, mobile optimization
 
-Week 5: Testing, improvements, finishing the presentation
+Step 5: Testing, improvements, finishing the presentation
+
+Step6: Added first dynamic features with the shopfinder
+
+Step7: Fine adjustments in the design
