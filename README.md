@@ -1,8 +1,8 @@
 Website Project Description
 
-1. Comparing Webshop Systems — A Guide for Beginners
+# 1. Comparing Webshop Systems — A Guide for Beginners
 
-2. Project Idea
+## 2. Project Idea
 
 Our website focuses on comparing different webshop systems.
 We explain how well-known systems like Shopify, OpenCart, Prestashop, shopware,woocommerce, sylius and Magento work along with their strengths and weaknesses.
@@ -11,7 +11,7 @@ The website aims to provide a quick overview for anyone who wants to create thei
 
 This topic is interesting because online shops are very important nowadays, and many people want to start their own project or business model. However, choosing the right software is often complicated — our website is designed to help with that.
 
-3. Target Audience
+## 3. Target Audience
 
 Our target audience mainly consists of:
 
@@ -23,7 +23,7 @@ Small businesses or hobby sellers who need simple explanations instead of compli
 
 Our website is helpful for them because we provide a simple explanation the systems.
 
-4. Structure of the Website
+### 4. Structure of the Website
 
 Our website consists of several HTML pages:
 
@@ -45,7 +45,7 @@ shopfinder.html  → dynamic page helping with finding the perfect webshop for t
 
 Each page has the same header and footer for consistent navigation.
 
-5. Design and Layout
+### 5. Design and Layout
 
 Colors: White/Blue tones for an easy to look at website
 Layout:
@@ -58,7 +58,7 @@ boxes again as information
 
 Same on all pages: header(name of the website), information
 
-6. Milestones
+# 6. Milestones
 
 Step 1: Idea generation, planning the website structure, researching content
 
