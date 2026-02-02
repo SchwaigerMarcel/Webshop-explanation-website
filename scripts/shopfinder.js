@@ -8,6 +8,7 @@ let scores = {
 };
 
 let currentQuestion = 0;
+var card = document.getElementById("finderCard");
 
 const questions = [
     {
@@ -89,6 +90,8 @@ const questions = [
 ];
 
 function loadQuestion() {
+    card.classList.add("scale-small");
+    card.classList.remove("scale");
     const q = questions[currentQuestion];
     document.getElementById("question").innerText = q.text;
 
@@ -102,6 +105,8 @@ function loadQuestion() {
         btn.onclick = () => selectAnswer(index);
         answersDiv.appendChild(btn);
     });
+    card.classList.add("scale");
+    card.classList.remove("scale-small");
 }
 
 function selectAnswer(answerIndex) {

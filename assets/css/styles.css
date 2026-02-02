@@ -95,11 +95,21 @@ header.site-header, footer.site-footer{
 #finderCard{
   margin-top: 1.5rem;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #finderExplanation{
   margin-top: 1.5rem;
   margin: 0 auto;
+}
+
+.finderBox{
+  padding: 2rem;
+  border-radius: 5px;
+  width: 500px;
+  height: 230px;
 }
 
 .brand-color{
@@ -137,3 +147,13 @@ header.site-header, footer.site-footer{
 .muted{ color: var(--muted); }
 
 .bi{ margin-right: .35rem; }
+
+.scale {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: scale(1);
+}
+
+.scale-small {
+    transform: scale(0.95);
+    opacity: 0;
+}
