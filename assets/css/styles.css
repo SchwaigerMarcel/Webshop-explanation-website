@@ -13,7 +13,6 @@ body{
 
 /* Header / Footer edge */
 header.site-header, footer.site-footer{
-  border-top: 6px solid rgba(13,110,253,0.06);
   border-bottom: 1px solid rgba(0,0,0,0.04);
 }
 
@@ -22,7 +21,6 @@ header.site-header, footer.site-footer{
 }
 .hero{
   padding: 3.5rem 0;
-  
 }
 
 .hero-bg {
