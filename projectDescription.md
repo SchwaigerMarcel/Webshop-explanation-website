@@ -58,7 +58,12 @@ boxes again as information
 
 Same on all pages: header(name of the website), information
 
-# 6. Milestones
+### 6. Dynamic functions
+Shopfinder:
+A short survey to find out which webshop application
+is the best for the user
+
+# 7. Milestones
 
 Step 1: Idea generation, planning the website structure, researching content
 
