@@ -1,0 +1,64 @@
+export default {
+  async fetch(request, env, ctx) {
+
+    const url = new URL(request.url);
+
+    if (url.pathname === "/favicon.ico") {
+      return new Response("", { status: 204 });
+    }
+
+    const cache = caches.default;
+    const cacheKey = new Request(url.toString(), request);
+
+    let cached = await cache.match(cacheKey);
+    if (cached) return cached;
+
+    const prompt = `
+Erstelle exakt 3 E-Commerce News.
+
+Antwort NUR als JSON:
+
+[
+ { "title":"...", "text":"..." },
+ { "title":"...", "text":"..." },
+ { "title":"...", "text":"..." }
+]
+`;
+
+    const aiResponse = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + env.GEMINI_API_KEY,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }]
+        })
+      }
+    );
+
+    const aiData = await aiResponse.json();
+    const text = aiData.candidates[0].content.parts[0].text;
+
+    let news;
+
+    try {
+      news = JSON.parse(text);
+    } catch {
+      news = [
+        { title: "Fehler", text: "AI Antwort konnte nicht geparst werden." }
+      ];
+    }
+
+    const response = new Response(JSON.stringify(news), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=600"
+      }
+    });
+
+    ctx.waitUntil(cache.put(cacheKey, response.clone()));
+
+    return response;
+  }
+};
