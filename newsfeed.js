@@ -1,30 +1,38 @@
 async function loadNews() {
+
   try {
+
     const res = await fetch("https://ecommerce-news.marcel-8cf.workers.dev");
-    const data = await res.json();
+    const text = await res.text();
 
-    // Text aus Gemini-Antwort
-    const text = data.candidates[0].content.parts[0].text;
+    console.log("RAW:", text);
 
-    // Split nach den "---" Trennern
-    const newsArray = text.split('---').map(n => n.trim()).filter(n => n);
+    const news = JSON.parse(text);
 
-    const cardWrappers = document.querySelectorAll('.card-wrapper');
+    console.log("Parsed news:", news);
 
-    newsArray.forEach((news, i) => {
-      if (!cardWrappers[i]) return;
+    const titles = document.querySelectorAll(".news-title");
+    const texts = document.querySelectorAll(".news-text");
 
-      const headerMatch = news.match(/Header:"([\s\S]*?)"/);
-      const textMatch = news.match(/Text:"([\s\S]*?)"$/);
+    console.log("Gefundene Titel Elemente:", titles.length);
+    console.log("Gefundene Text Elemente:", texts.length);
 
-      const h2 = cardWrappers[i].querySelector('h2.card-title');
-      const p = cardWrappers[i].querySelector('p');
+    news.forEach((item, i) => {
 
-      if (h2 && headerMatch) h2.innerText = headerMatch[1];
-      if (p && textMatch) p.innerText = textMatch[1];
+      console.log("Fülle Karte:", i, item);
+
+      if (titles[i]) {
+        titles[i].textContent = item.title;
+      }
+
+      if (texts[i]) {
+        texts[i].textContent = item.text;
+      }
+
     });
+
   } catch (err) {
-    console.error("Fehler beim Laden der News:", err);
+    console.error("Fehler:", err);
   }
 }
 
