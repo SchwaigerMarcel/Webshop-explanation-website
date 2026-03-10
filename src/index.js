@@ -14,14 +14,19 @@ export default {
     if (cached) return cached;
 
     const prompt = `
-Erstelle exakt 3 E-Commerce News.
+Erstelle 3 kurze News über E-Commerce.
 
-Antwort NUR als JSON:
+Antworte ausschließlich im JSON Format.
+Keine Einleitung, kein Text davor oder danach.
+Es ist wichtig dass jeweil ein title und ein text in {} steht.
+Ohne \`\`\`json
+
+Format:
 
 [
- { "title":"...", "text":"..." },
- { "title":"...", "text":"..." },
- { "title":"...", "text":"..." }
+ {"title":"...","text":"..."},
+ {"title":"...","text":"..."},
+ {"title":"...","text":"..."}
 ]
 `;
 
@@ -40,20 +45,18 @@ Antwort NUR als JSON:
     const text = aiData.candidates[0].content.parts[0].text;
 
     let news;
-
+    console.log(aiData);
     try {
       news = JSON.parse(text);
     } catch {
-      news = [
-        { title: "Fehler", text: "AI Antwort konnte nicht geparst werden." }
-      ];
+      news = "Error";
     }
 
     const response = new Response(JSON.stringify(news), {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Cache-Control": "public, max-age=600"
+        "Cache-Control": "public, max-age=1800"
       }
     });
 
