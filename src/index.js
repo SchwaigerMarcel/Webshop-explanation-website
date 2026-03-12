@@ -14,7 +14,21 @@ export default {
     if (cached) return cached;
 
     const prompt = `
-Erstelle 3 kurze spezifische aktuelle News über E-Commerce.
+Erstelle 3 kurze, aktuelle und konkrete Nachrichten aus dem E-Commerce-Bereich.
+
+Vorgaben:
+
+Jede News mindestens 3 Sätze lang.
+
+Fokus auf konkrete Ereignisse, Zahlen, Firmen, neue Features, Gesetze oder Marktveränderungen.
+
+Keine allgemeinen Trends oder bekannten Aussagen wie Nachhaltigkeit, Kundenverhalten oder „E-Commerce wächst“.
+
+Bevorzuge aktuelle Entwicklungen (z. B. neue Funktionen, Partnerschaften, Übernahmen, Plattform-Updates, KI-Tools, Logistik-Änderungen, regulatorische Entscheidungen).
+
+Wenn möglich Firmennamen oder Plattformen nennen (z. B. Amazon, Shopify, Temu, TikTok Shop).
+
+Jede News soll eine neue Information enthalten, die nicht offensichtlich oder allgemein bekannt ist.
 
 Antworte ausschließlich im JSON Format.
 Keine Einleitung, kein Text davor oder danach.
