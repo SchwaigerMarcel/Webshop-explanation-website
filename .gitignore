@@ -1,0 +1,14 @@
+# Node / Wrangler / Cloudflare Worker
+node_modules/
+.wrangler/
+.wrangler/cache/
+
+# OS / Editor Dateien
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Build / Output
+dist/
+build/
