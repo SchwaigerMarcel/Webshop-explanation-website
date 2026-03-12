@@ -1,80 +1,65 @@
 Website Project Description
 
-# 1. Comparing Webshop Systems — A Guide for Beginners
+# 1. Overview
 
-## 2. Project Idea
+This project is a comparison website for popular webshop systems. It is intended as a beginner-friendly guide to help people choose the right e‑commerce platform for their needs.
 
-Our website focuses on comparing different webshop systems.
-We explain how well-known systems like Shopify, OpenCart, Prestashop, shopware,woocommerce, sylius and Magento work along with their strengths and weaknesses.
+# 2. Project Idea
 
-The website aims to provide a quick overview for anyone who wants to create their own online shop but doesn’t know which system best fits their needs.
+The site explains how well‑known systems such as Shopify, OpenCart, PrestaShop, Shopware, WooCommerce, Sylius and Magento work, describing each one’s main features, strengths, and potential drawbacks.
 
-This topic is interesting because online shops are very important nowadays, and many people want to start their own project or business model. However, choosing the right software is often complicated — our website is designed to help with that.
+By presenting the information clearly and concisely, we aim to give visitors a quick overview when they’re unsure which solution fits their requirements.
 
-## 3. Target Audience
+E‑commerce is increasingly important, and many entrepreneurs, students, and hobbyists consider launching their own online shops. Choosing the appropriate software can be overwhelming; this site is designed to simplify that decision.
 
-Our target audience mainly consists of:
+# 3. Target Audience
 
-Students and beginners who want to learn about webshop systems
+The primary audiences are:
 
-People considering starting their own online shop
+- Students and beginners learning about webshop platforms
+- Individuals planning to start an online shop
+- Small businesses or hobby sellers who prefer straightforward explanations over technical jargon
 
-Small businesses or hobby sellers who need simple explanations instead of complicated technical texts
+We offer accessible, easy‑to‑understand content tailored to non‑technical readers.
 
-Our website is helpful for them because we provide a simple explanation the systems.
+# 4. Website Structure
 
-### 4. Structure of the Website
+The site is built with several static HTML pages:
 
-Our website consists of several HTML pages:
+- `index.html` – Homepage and introduction to the topic
+- `magento.html` – Detailed overview of Magento
+- `opencart.html` – Detailed overview of OpenCart
+- `prestashop.html` – Detailed overview of PrestaShop
+- `shopware.html` – Detailed overview of Shopware
+- `sylius.html` – Detailed overview of Sylius
+- `woocommerce.html` – Detailed overview of WooCommerce
+- `shopfinder.html` – Interactive page that helps users find the best webshop solution based on a short survey
+- `newsfeed.html` – AI‑powered news section with up‑to‑date e‑commerce headlines
 
-index.html → Homepage, introduction to the topic
+All pages share a common header and footer for consistent navigation.
 
-magento.html  → Detail page about magento
+# 5. Design & Layout
 
-opencart.html → Detail page about OpenCart
+- **Color scheme:** White and blue tones for a clean, easy‑on‑the‑eyes appearance
+- **Layout elements:**
+  - Fixed header with a navigation menu
+  - Card‑style boxes used for navigation and content sections
+  - Consistent page structure: site title in the header, followed by informational content
 
-prestashop.html  → Detail page about prestashop
+The site uses Bootstrap for responsive design and includes icons via Bootstrap Icons.
 
-shopware.html → Detail page about Shopify
+# 6. Dynamic Features
 
-sylius.html  → Detail page about sylius
-
-woocommerce.html  → Detail page about woocommerce
-
-shopfinder.html  → dynamic page helping with finding the perfect webshop for the user
-
-Each page has the same header and footer for consistent navigation.
-
-### 5. Design and Layout
-
-Colors: White/Blue tones for an easy to look at website
-Layout:
-
-A fixed header with navigation menu
-
-Cards (boxes) also as navigation
-
-boxes again as information
-
-Same on all pages: header(name of the website), information
-
-### 6. Dynamic functions
-Shopfinder:
-A short survey to find out which webshop application
-is the best for the user
+- **Shopfinder:** A simple questionnaire that suggests the most suitable webshop system based on user responses
+- **AI Newsfeed:** A news page (`newsfeed.html`) that fetches headlines from a Cloudflare Worker API. The worker uses OpenAI (GPT) to generate short e‑commerce news summaries, which the front‑end pulls in via JavaScript (`assets/scripts/newsfeed.js`). This introduces a serverless backend component and demonstrates integration with third‑party APIs.
 
 # 7. Milestones
 
-Step 1: Idea generation, planning the website structure, researching content
-
-Step 2: Creating basic HTML pages and implementing navigation
-
-Step 3: Filling pages with text and tables
-
-Step 4: CSS design, colors, layout, mobile optimization
-
-Step 5: Testing, improvements, finishing the presentation
-
-Step6: Added first dynamic features with the shopfinder
-
-Step7: Fine adjustments in the design
+1. Brainstorming, planning the site structure, and researching content
+2. Creating basic HTML pages and implementing site-wide navigation
+3. Populating pages with text, tables, and images
+4. Applying CSS for design, layout, and mobile responsiveness
+5. Testing, making improvements, and finalizing the presentation
+6. Adding the first dynamic features (Shopfinder survey)
+7. Implementing AI‑powered newsfeed with Cloudflare Worker and front‑end JavaScript
+8. Fine‑tuning design and content based on feedback
