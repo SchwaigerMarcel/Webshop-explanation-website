@@ -14,7 +14,7 @@ export default {
     if (cached) return cached;
 
     const prompt = `
-Erstelle 3 kurze News über E-Commerce.
+Erstelle 3 kurze spezifische aktuelle News über E-Commerce.
 
 Antworte ausschließlich im JSON Format.
 Keine Einleitung, kein Text davor oder danach.
