@@ -1,0 +1,140 @@
+import { Link, useLocation } from "react-router";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // decodeURIComponent sorgt dafür, dass %C3%BC wieder zu "ü" wird
+const isActive = (path: string) => decodeURIComponent(location.pathname) === path;
+
+  // Varianten für das Aufklappen des Menüs
+  // Ersetze deine bisherigen menuVariants durch diese hier:
+const menuVariants = {
+  closed: {
+    opacity: 0,
+    height: 0,
+    transition: { 
+      duration: 0.3, 
+      ease: "easeInOut" 
+    }
+  },
+  open: {
+    opacity: 1,
+    height: "auto",
+    transition: { 
+      duration: 0.4, 
+      ease: "easeOut" 
+    }
+  }
+} as const; // <--- Das hier ist entscheidend!
+
+  return (
+    <header className="sticky top-0 z-50 bg-neutral-950/95 backdrop-blur-sm border-b border-amber-900/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-5 group">
+            <img
+              src="/logo.svg"
+              alt="Logo"
+              className="w-10 h-10 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:rotate-12"
+              style={{ marginBottom: "7px" }}
+            />
+            <div className="flex flex-col">
+              <span className="text-xl sm:text-2xl font-serif tracking-wider text-amber-500 leading-none">
+                MESSERSCHMIEDE
+              </span>
+              <span className="text-[0.65rem] sm:text-sm tracking-[0.4em] text-neutral-400 -mt-0.5 uppercase">
+                Schwaiger
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {["/", "/produkte", "/über-uns", "/kontakt"].map((path) => (
+              <Link
+                key={path}
+                to={path}
+                className={`text-sm uppercase tracking-wide transition-colors relative ${
+                  isActive(path) ? "text-amber-500" : "text-neutral-300 hover:text-amber-500"
+                }`}
+              >
+                {path === "/" ? "Home" : path.replace("/", "").replace("-", " ")}
+                {isActive(path) && (
+                  <motion.div 
+                    layoutId="underline" 
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-amber-500" 
+                  />
+                )}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile Menu Button - Animiertes Icon */}
+          <button
+            className="md:hidden p-2 text-neutral-300 hover:text-amber-500 transition-colors relative w-10 h-10 flex items-center justify-center"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <div className="relative w-6 h-5">
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                className="absolute top-0 left-0 w-full h-0.5 bg-current block"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                className="absolute top-2 left-0 w-full h-0.5 bg-current block"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 16 }}
+                className="absolute top-0 left-0 w-full h-0.5 bg-current block"
+              />
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile Navigation - Animiertes Panel */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.nav
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+              className="md:hidden overflow-hidden bg-neutral-950/98 border-t border-amber-900/30"
+            >
+              <div className="py-6 space-y-4 px-2">
+                {[
+                  { name: "Home", path: "/" },
+                  { name: "Produkte", path: "/produkte" },
+                  { name: "Über Uns", path: "/über-uns" },
+                  { name: "Kontakt", path: "/kontakt" }
+                ].map((link, i) => (
+                  <motion.div
+                    key={link.path}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <Link
+                      to={link.path}
+                      className={`block text-lg uppercase tracking-widest px-4 py-2 transition-colors ${
+                        isActive(link.path) ? "text-amber-500" : "text-neutral-300"
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
+      </div>
+    </header>
+  );
+}

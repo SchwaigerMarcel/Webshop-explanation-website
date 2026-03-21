@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:15
+    container_name: webshop-db-1
+    environment:
+      POSTGRES_USER: marcel
+      POSTGRES_PASSWORD: dein-passwort
+      POSTGRES_DB: webshop-db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: webshop-backend-1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: webshop-frontend-1
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  db_data:
