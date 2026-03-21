@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Scissors, CheckCircle, Sparkles, Clock, Shield, Award } from "lucide-react";
 
 export function Schleifservice() {
