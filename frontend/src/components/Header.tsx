@@ -40,7 +40,7 @@ const menuVariants = {
             <img
               src="/logo.svg"
               alt="Logo"
-              className="w-10 h-10 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:rotate-12"
+              className="w-10 h-10 sm:w-12 sm:h-12 "
               style={{ marginBottom: "7px" }}
             />
             <div className="flex flex-col">

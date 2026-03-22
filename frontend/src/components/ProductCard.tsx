@@ -21,9 +21,16 @@ export function ProductCard({ product }: ProductCardProps) {
     >
       <div className="aspect-square overflow-hidden bg-neutral-800">
         <img
-          src={product.image || "https://via.placeholder.com/400"}
+          src={`/${product.image}/main.jpg`}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={(e) => {
+            // Fallback: Falls main.jpg nicht existiert, versuche main.jpeg
+            const target = e.target as HTMLImageElement;
+            if (!target.src.endsWith('.jpeg')) {
+              target.src = `/${product.image}/main.jpeg`;
+            }
+          }}
         />
       </div>
       <div className="p-6 flex-1 flex flex-col">

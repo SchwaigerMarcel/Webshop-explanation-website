@@ -7,4 +7,18 @@ export default defineConfig({
     react(),
     tailwindcss(), // <-- Hier als Plugin hinzufügen
   ],
+  server: {
+    host: true,
+    port: 5173,
+    allowedHosts: [
+      'messerschmiede-schwaiger.at',
+      'www.messerschmiede-schwaiger.at'
+    ],
+    proxy: {
+      '/api': {
+        target: 'http://backend:5000',
+        changeOrigin: true,
+      },
+    },
+  },
 })

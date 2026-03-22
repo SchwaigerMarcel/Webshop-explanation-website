@@ -32,7 +32,7 @@ export function Home() {
   return (
     <div className="bg-neutral-950 text-white">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12">
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-8 md:py-12">
         <div className="absolute inset-0">
           <img
             src="../../public/Schmiede.jpg"
@@ -77,8 +77,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Features Section - Jetzt mit der FeatureCard Komponente genutzt */}
-      <section className="py-20 bg-neutral-900">
+      {/* Features Section - Jetzt nur auf PC sichtbar (hidden md:block) */}
+      <section className="hidden md:block py-20 bg-neutral-900">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <FeatureCard
@@ -101,7 +101,7 @@ export function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-20 bg-neutral-950">
+      <section className="pt-10 pb-20 md:py-20 bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif text-amber-500 mb-4">AUSGEWÄHLTE MESSER</h2>
@@ -117,15 +117,16 @@ export function Home() {
               >
                 <div className="aspect-square overflow-hidden">
                   <img
-                    src={
-                      product.image.startsWith('http')
-                        ? product.image
-                        : product.image.startsWith('/')
-                          ? product.image
-                          : `/${product.image}`
-                    }
+                    src={`/${product.image}/main.jpg`}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      // Fallback: Falls main.jpg nicht existiert, versuche main.jpeg
+                      const target = e.target as HTMLImageElement;
+                      if (!target.src.endsWith('.jpeg')) {
+                        target.src = `/${product.image}/main.jpeg`;
+                      }
+                    }}
                   />
                 </div>
                 <div className="p-6">

@@ -3,13 +3,6 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Flame, Wrench, Shield, Heart, Zap, ThermometerSun, Sparkles, Scissors } from "lucide-react";
 
-// Hook to check if element is in view
-function useScrollAnimation() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-  return { ref, isInView };
-}
-
 // Animated counter component
 function AnimatedCounter({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -307,7 +300,7 @@ export function About() {
 
               <div className="space-y-4">
                 {/* 1. Maschinelles Schleifen - Klickbar */}
-                <Link to="/Härteservice" className="block">
+                <Link to="/Schleifservice" className="block">
                   <motion.div
                     whileHover={{ x: 8, borderColor: "rgba(217, 119, 6, 0.4)" }}
                     whileTap={{ scale: 0.98 }}
@@ -389,7 +382,7 @@ export function About() {
                 ))}
               </div>
 
-              <Link to="/Schleifservice" className="block">
+              <Link to="/Härteservice" className="block">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   className="mt-6 sm:mt-8 p-3 sm:p-4 bg-amber-900/10 border border-amber-600/30"
