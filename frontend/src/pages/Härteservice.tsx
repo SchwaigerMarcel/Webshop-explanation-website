@@ -8,7 +8,7 @@ export function Härteservice() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1565372195458-9de0b320ef04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb3JnZSUyMGZpcmUlMjBobGF3fGVufDF8fHx8MTc3NDAzODU4Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src="../../public/Härteservice.jpg"
             alt="Härteofen"
             className="w-full h-full object-cover"
           />

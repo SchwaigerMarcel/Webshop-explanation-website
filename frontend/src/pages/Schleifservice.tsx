@@ -8,7 +8,7 @@ export function Schleifservice() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGFycGVuaW5nJTIwa25pZmV8ZW58MXx8fHwxNzc0MDM4NTg2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src="../../public/Schleifservice.jpg"
             alt="Messerschleifen"
             className="w-full h-full object-cover"
           />

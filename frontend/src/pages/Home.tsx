@@ -35,7 +35,7 @@ export function Home() {
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1596441560548-2bc4b5e2c361?q=80&w=1080"
+            src="../../public/Schmiede.jpg"
             alt="Schmiede"
             className="w-full h-full object-cover"
           />

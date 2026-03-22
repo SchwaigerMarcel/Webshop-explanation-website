@@ -59,7 +59,7 @@ export function About() {
       >
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1596441560548-2bc4b5e2c361?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibGFja3NtaXRoJTIwZm9yZ2UlMjB3b3Jrc2hvcHxlbnwxfHx8fDE3NzQwMzg1ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src="../../public/Schmiede.jpg"
             alt="Werkstatt"
             className="w-full h-full object-cover"
           />
@@ -324,7 +324,7 @@ export function About() {
                 </Link>
 
                 {/* 2. Japanische Wassersteine - Klickbar */}
-                <Link to="/Härteservice" className="block">
+                <Link to="/Schleifservice" className="block">
                   <motion.div
                     whileHover={{ x: 8, borderColor: "rgba(217, 119, 6, 0.6)" }}
                     whileTap={{ scale: 0.98 }}
