@@ -17,7 +17,7 @@ export function Home() {
   // 'loading' wurde entfernt, da es im JSX unten nicht verwendet wurde
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/products")
+    fetch("/api/products")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
