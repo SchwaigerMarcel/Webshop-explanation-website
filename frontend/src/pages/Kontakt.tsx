@@ -47,8 +47,8 @@ export function Kontakt() {
                         {[
                             { icon: Phone, label: "Telefon", val: "+43 677 63547 065", href: "tel:+4367763547065" },
                             { icon: Mail, label: "E-Mail", val: "info@messerschmiede-schwaiger.at", href: "mailto:info@messerschmiede-schwaiger.at" },
-                            { icon: MapPin, label: "Werkstatt", val: "Schwaigaustraße 119, 4030 Linz", href: "https://maps.google.com/?q=Schwaigaustraße+119,+4030+Linz" },
-                            { icon: Clock, label: "Öffnungszeiten", val: "Mo-Fr: Nach Vereinbarung", href: "#" }
+                            { icon: MapPin, label: "Werkstatt", val: "Suttnerstraße 25, 4030 Linz", href: "https://maps.google.com/?q=Suttnerstraße+25,+4030+Linz" },
+                            { icon: Clock, label: "Öffnungszeiten", val: "Nach Vereinbarung", href: "#" }
                         ].map((item, i) => (
                             <motion.a
                                 key={i}
@@ -63,25 +63,6 @@ export function Kontakt() {
                             </motion.a>
                         ))}
                     </div>
-
-                    {/* 3. Google Maps - Full Width & Normal Look */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="w-full h-[400px] bg-neutral-900 border border-amber-900/20 relative overflow-hidden shadow-2xl"
-                    >
-                        <iframe
-                            title="Messerschmiede Schwaiger Standort"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d569.5220842160122!2d14.388352677009257!3d48.24695908048685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4773bc5d4d44ec55%3A0x75aa0fc0b5ae9dd3!2sSchwaigaustra%C3%9Fe%20119%2C%204030%20Linz!5e1!3m2!1sde!2sat!4v1774096620728!5m2!1sde!2sat" 
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }} 
-                            allowFullScreen={true}
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            className="grayscale-0 contrast-100 brightness-100"
-                        />
-                    </motion.div>
-
                 </motion.div>
             </div>
         </div>

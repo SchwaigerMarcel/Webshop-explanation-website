@@ -14,7 +14,7 @@ export function Impressum() {
             <div className="space-y-1">
               <p><strong>Firmenname:</strong> Leon Schwaiger</p>
               <p><strong>Geschäftsbezeichnung:</strong> Messerschmiede Schwaiger</p>
-              <p><strong>Adresse:</strong> Schwaigaustraße 119, 4030 Linz</p>
+              <p><strong>Adresse:</strong> Suttnerstraße 25, 4030 Linz</p>
               <p><strong>Rechtsform:</strong> Einzelunternehmer</p>
             </div>
           </section>
@@ -34,8 +34,8 @@ export function Impressum() {
               Registereintrag
             </h2>
             <div className="space-y-1">
-              <p><strong>GLN (der öffentlichen Verwaltung):</strong> 9110000123456</p>
-              <p><strong>GISA-Zahl:</strong> 12345678</p>
+              {/* <p><strong>GLN (der öffentlichen Verwaltung):</strong> 9110000123456</p> */}
+              <p><strong>Geschäftszahl:</strong> 1021507</p>
               <p><strong>Kammerzugehörigkeit:</strong> Mitglied der Wirtschaftskammer Oberösterreich</p>
             </div>
           </section>

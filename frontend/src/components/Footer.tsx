@@ -31,7 +31,7 @@ export function Footer() {
                 <MapPin size={16} className="mt-1 text-amber-600" />
                 <div>
                   <p>Messerschmiede Schwaiger</p>
-                  <p>Schwaigaustraße 119</p>
+                  <p>Suttnerstraße 25</p>
                   <p>4030 Linz</p>
                 </div>
               </div>
