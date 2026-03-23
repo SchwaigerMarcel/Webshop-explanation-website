@@ -29,14 +29,16 @@ services:
     container_name: messerschmiede-backend
     restart: unless-stopped
     ports:
-      - '5000:5000'
+      - '3000:3000'
     environment:
-      - PORT=5000
-      - DATABASE_URL=postgresql://marcel:schmiede2024@db:5432/messerschmiede_db
+      - PORT=3000
+      - DATABASE_URL=postgresql://marcel:e`RqjC6W1(k1@db:5432/messerschmiede_db
+      - JWT_SECRET=dein_super_geheimes_passwort_123
     volumes:
       - ./backend:/app
-      # DIE TÜR: Wir mounten den public-Ordner des Frontends in den Backend-Container
-      - ./frontend/public:/frontend/public
+      - /app/node_modules
+      # Hier den absoluten Pfad von 'pwd' oben einsetzen:
+      - /home/marcel/websites/Messerschmiede-Schwaiger/backend/images:/app/images
     depends_on:
       - db
 

@@ -176,16 +176,27 @@ function FeatureCard({ icon, title, text }: { icon: React.ReactNode, title: stri
 
 function ServiceLink({ to, icon, title, desc }: { to: string, icon: React.ReactNode, title: string, desc: string }) {
   return (
-    <Link to={to} className="group bg-neutral-950 border border-amber-900/20 hover:border-amber-600/50 transition-all p-8">
-      <div className="flex items-center gap-4 mb-6">
-        <div className="w-16 h-16 bg-amber-900/30 flex items-center justify-center rounded-full text-amber-500">
-          {icon}
+    <Link to={to} className="group flex flex-col justify-between bg-neutral-950 border border-amber-900/20 hover:border-amber-600/50 transition-all p-8 h-full">
+      <div>
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-16 h-16 bg-amber-900/30 flex items-center justify-center rounded-full text-amber-500">
+            {icon}
+          </div>
+          <h3 className="text-2xl text-amber-500 uppercase tracking-wide">{title}</h3>
         </div>
-        <h3 className="text-2xl text-amber-500 uppercase tracking-wide">{title}</h3>
+        <p className="text-neutral-300 mb-6">{desc}</p>
       </div>
-      <p className="text-neutral-300 mb-6">{desc}</p>
-      <div className="flex justify-end italic text-amber-500 group-hover:translate-x-2 transition-transform">
-        <ArrowRight />
+
+      {/* Der Pfeil-Button: Rechts positioniert, Mobile immer Orange */}
+      <div className="flex justify-end">
+        <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300
+          /* Mobile: Immer Orange mit schwarzem Pfeil */
+          bg-amber-600 text-black 
+          /* Desktop (ab md): Erst nur Rahmen, bei Hover Orange */
+          md:bg-transparent md:text-amber-500 md:border md:border-amber-600/50 
+          md:group-hover:bg-amber-600 md:group-hover:text-black md:group-hover:translate-x-2">
+          <ArrowRight size={20} />
+        </div>
       </div>
     </Link>
   );

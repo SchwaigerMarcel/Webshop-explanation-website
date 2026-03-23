@@ -1,9 +1,46 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Flame, Wrench, Shield, Heart, Zap, ThermometerSun, Sparkles, Scissors } from "lucide-react";
+import { ArrowRight, Flame, Wrench, Shield, Heart, Zap, ThermometerSun, Sparkles, Scissors } from "lucide-react";
 
-// Animated counter component
+// --- HILFSKOMPONENTEN (Müssen vor der Hauptkomponente definiert sein) ---
+
+const ServiceArrow = () => (
+  <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300
+    bg-amber-600 text-black 
+    md:bg-transparent md:text-amber-500 md:border md:border-amber-600/50 
+    group-hover:bg-amber-600 group-hover:text-black group-hover:translate-x-2">
+    <ArrowRight size={20} />
+  </div>
+);
+
+function ServiceLinkSimple({ to }: { to: string }) {
+  return (
+    <Link to={to} className="group block w-fit">
+      <ServiceArrow />
+    </Link>
+  );
+}
+
+function ServiceLink({ to, icon, title, desc }: { to: string, icon: React.ReactNode, title: string, desc: string }) {
+  return (
+    <Link to={to} className="group flex flex-col justify-between bg-neutral-950 border border-amber-900/20 hover:border-amber-600/50 transition-all p-8 h-full">
+      <div>
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-16 h-16 bg-amber-900/30 flex items-center justify-center rounded-full text-amber-500">
+            {icon}
+          </div>
+          <h3 className="text-2xl text-amber-500 uppercase tracking-wide">{title}</h3>
+        </div>
+        <p className="text-neutral-300 mb-6">{desc}</p>
+      </div>
+      <div className="flex justify-end">
+        <ServiceArrow />
+      </div>
+    </Link>
+  );
+}
+
 function AnimatedCounter({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -11,38 +48,27 @@ function AnimatedCounter({ end, suffix = "", duration = 2 }: { end: number; suff
 
   useEffect(() => {
     if (!isInView) return;
-
     let startTime: number;
     let animationFrame: number;
-
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-
       setCount(Math.floor(progress * end));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
+      if (progress < 1) animationFrame = requestAnimationFrame(animate);
     };
-
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
   }, [isInView, end, duration]);
 
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref}>{count}{suffix}</span>;
 }
+
+// --- HAUPTKOMPONENTE ---
 
 export function About() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
-
   return (
     <div className="bg-neutral-950">
       {/* Hero Section with Parallax */}
@@ -300,7 +326,7 @@ export function About() {
 
               <div className="space-y-4">
                 {/* 1. Maschinelles Schleifen - Klickbar */}
-                <Link to="/Schleifservice" className="block">
+                <Link to="/Schleifservice" className="block mt-6">
                   <motion.div
                     whileHover={{ x: 8, borderColor: "rgba(217, 119, 6, 0.4)" }}
                     whileTap={{ scale: 0.98 }}
@@ -317,7 +343,7 @@ export function About() {
                 </Link>
 
                 {/* 2. Japanische Wassersteine - Klickbar */}
-                <Link to="/Schleifservice" className="block">
+                <Link to="/Schleifservice" className="block mt-6">
                   <motion.div
                     whileHover={{ x: 8, borderColor: "rgba(217, 119, 6, 0.6)" }}
                     whileTap={{ scale: 0.98 }}
@@ -335,6 +361,12 @@ export function About() {
                     <div className="text-2xl sm:text-3xl text-amber-500 font-serif">€25</div>
                   </motion.div>
                 </Link>
+                <div className="mt-12 p-6 bg-neutral-900/50 flex items-center justify-between">
+                  <p className="text-neutral-300">Mehr Infos</p>
+
+                  {/* Hier rufst du die kleine Version auf */}
+                  <ServiceLinkSimple to="/Schleifservice" />
+                </div>
               </div>
             </motion.div>
 
@@ -385,11 +417,23 @@ export function About() {
               <Link to="/Härteservice" className="block">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="mt-6 sm:mt-8 p-3 sm:p-4 bg-amber-900/10 border border-amber-600/30"
+                  // 'group' hinzugefügt, damit Kinder auf den Hover dieses Divs reagieren können
+                  className="group mt-6 sm:mt-8 p-3 sm:p-4 bg-amber-900/10 border border-amber-600/30 
+             flex items-center justify-center gap-4 cursor-pointer transition-colors hover:border-amber-600/60"
                 >
-                  <p className="text-amber-500 text-center text-xs sm:text-sm">
+                  <p className="text-amber-500 text-xs sm:text-sm transition-colors group-hover:text-amber-400">
                     Preise auf Anfrage – je nach Stahlsorte und Größe
                   </p>
+
+                  {/* Wir rufen hier direkt den Link auf, damit die Animation gesteuert werden kann */}
+                  <Link to="/härteservice" className="flex items-center">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300
+                                    bg-amber-600 text-black 
+                                    md:bg-transparent md:text-amber-500 md:border md:border-amber-600/50 
+                                    group-hover:bg-amber-600 group-hover:text-black group-hover:translate-x-2">
+                      <ArrowRight size={20} />
+                    </div>
+                  </Link>
                 </motion.div>
               </Link>
             </motion.div>

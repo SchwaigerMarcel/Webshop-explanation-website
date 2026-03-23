@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Check, Loader2, ChevronLeft, ChevronRight, Phone, Mail, X } from "lucide-react";
 
+const API_BASE_URL = "https://messerschmiede-schwaiger.at/api";
 interface Product {
   id: number;
   name: string;
@@ -9,8 +10,8 @@ interface Product {
   price: string | number;
   description: string;
   long_description: string;
-  image: string;    
-  images: string[]; 
+  image: string;
+  images: string[];
   features: string[];
   specifications: { label: string; value: string }[];
 }
@@ -24,15 +25,30 @@ export function ProductDetail() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false); // Für die Großansicht
 
   useEffect(() => {
+    console.log("1. ProductDetail geladen für ID:", id); // Muss in der Konsole erscheinen!
     window.scrollTo(0, 0);
-    fetch(`/api/products/${id}`)
-      .then((res) => res.json())
+
+    if (!id) {
+      console.error("Fehler: Keine ID in der URL gefunden!");
+      return;
+    }
+
+    const fetchUrl = `/api/products/${id}`;
+    console.log("2. Starte Fetch an:", fetchUrl);
+
+    fetch(fetchUrl)
+      .then((res) => {
+        console.log("3. Server Antwort-Status:", res.status);
+        if (!res.ok) throw new Error(`HTTP Fehler! Status: ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
+        console.log("4. Daten erfolgreich empfangen:", data);
         setProduct(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Fehler beim Laden:", err);
+        console.error("5. Kritischer Fehler beim Laden:", err);
         setLoading(false);
       });
   }, [id]);
@@ -63,7 +79,7 @@ export function ProductDetail() {
     <div className="bg-neutral-950 min-h-screen py-12">
       {/* LIGHTBOX / GROSSANSICHT */}
       {isLightboxOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-10"
           onClick={() => setIsLightboxOpen(false)}
         >
@@ -71,9 +87,12 @@ export function ProductDetail() {
             <X size={40} />
           </button>
           <img
-            src={`/${product.image}/${product.images[currentImgIdx]}`}
+            src={`https://messerschmiede-schwaiger.at/api/images/${product.image}/${product.images[currentImgIdx]}`}
             alt={product.name}
-            className="max-w-full max-h-full object-contain shadow-2xl"
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              console.error("Bild nicht gefunden unter:", (e.target as HTMLImageElement).src);
+            }}
           />
         </div>
       )}
@@ -89,32 +108,32 @@ export function ProductDetail() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* BILDER SLIDER */}
-          <div 
+          <div
             onClick={() => setIsLightboxOpen(true)}
             className="relative aspect-square bg-neutral-900 border border-amber-900/20 group overflow-hidden shadow-2xl cursor-zoom-in"
           >
-            {product.images && product.images.length > 0 ? (
+            {product && product.images && product.images.length > 0 ? (
               <img
-                src={`/${product.image}/${product.images[currentImgIdx]}`}
+                src={`${API_BASE_URL}/images/products/${product.image}/${product.images[currentImgIdx]}`}
                 alt={product.name}
-                className="w-full h-full object-cover transition-opacity duration-500"
+                className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-neutral-600 italic">
-                Keine Bilder verfügbar
+              <div className="flex items-center justify-center h-full text-neutral-500">
+                Bild wird geladen oder fehlt...
               </div>
             )}
 
             {/* Navigations-Pfeile: Mobil immer sichtbar, Desktop hover */}
             {product.images && product.images.length > 1 && (
               <>
-                <button 
+                <button
                   onClick={prevImage}
                   className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 text-white transition-opacity lg:opacity-0 lg:group-hover:opacity-100 hover:bg-amber-600 rounded-full z-10"
                 >
                   <ChevronLeft size={30} />
                 </button>
-                <button 
+                <button
                   onClick={nextImage}
                   className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 text-white transition-opacity lg:opacity-0 lg:group-hover:opacity-100 hover:bg-amber-600 rounded-full z-10"
                 >
@@ -126,9 +145,8 @@ export function ProductDetail() {
                     <button
                       key={idx}
                       onClick={(e) => { e.stopPropagation(); setCurrentImgIdx(idx); }}
-                      className={`h-2 rounded-full transition-all ${
-                        idx === currentImgIdx ? 'bg-amber-500 w-6' : 'bg-white/30 w-2'
-                      }`}
+                      className={`h-2 rounded-full transition-all ${idx === currentImgIdx ? 'bg-amber-500 w-6' : 'bg-white/30 w-2'
+                        }`}
                     />
                   ))}
                 </div>
@@ -183,11 +201,11 @@ export function ProductDetail() {
               <h3 className="text-xl text-amber-500 mb-4 uppercase tracking-wider font-serif italic">Unikat anfragen</h3>
               <div className="space-y-4">
                 <a href="tel:+4367763547065" className="flex justify-between border-b border-amber-900/20 pb-2 text-neutral-300 hover:text-amber-500 transition-colors">
-                  <span className="text-neutral-500 flex items-center gap-2"><Phone size={16}/> Telefon:</span> 
+                  <span className="text-neutral-500 flex items-center gap-2"><Phone size={16} /> Telefon:</span>
                   <span className="font-medium">+43 677 635 47065</span>
                 </a>
                 <a href="mailto:info@messerschmiede-schwaiger.at" className="flex justify-between border-b border-amber-900/20 pb-2 text-neutral-300 hover:text-amber-500 transition-colors">
-                  <span className="text-neutral-500 flex items-center gap-2"><Mail size={16}/> E-Mail:</span> 
+                  <span className="text-neutral-500 flex items-center gap-2"><Mail size={16} /> E-Mail:</span>
                   <span className="font-medium">info@messerschmiede-schwaiger.at</span>
                 </a>
               </div>
