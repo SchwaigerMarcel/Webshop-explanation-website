@@ -11,7 +11,6 @@ import { Datenschutz } from "./pages/Datenschutz";
 import { Kontakt } from "./pages/Kontakt";
 import { NotFound} from "./pages/NotFound"
 import { AdminDashboard } from "./pages/AdminDashboard";
-import {Login} from "./pages/Login";
 
 export const router = createBrowserRouter([
   {
@@ -62,10 +61,6 @@ export const router = createBrowserRouter([
       {
         path: "Admin",
         element: <AdminDashboard />,
-      },
-      {
-        path: "Login",
-        element: <Login onLogin={() => {}} />,
       }
     ],
   },

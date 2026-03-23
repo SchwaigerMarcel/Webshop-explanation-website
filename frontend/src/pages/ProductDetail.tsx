@@ -129,37 +129,39 @@ export function ProductDetail() {
     </div>
   )}
 
-  {/* PFEILE: Nur sichtbar bei Hover (group-hover) */}
-  {product.images && product.images.length > 1 && (
-    <>
-      <button
-        onClick={prevImage}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 p-2 text-white hover:bg-amber-600 rounded-full z-10 transition-all duration-300 opacity-0 group-hover:opacity-100"
-      >
-        <ChevronLeft size={30} />
-      </button>
-      <button
-        onClick={nextImage}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 p-2 text-white hover:bg-amber-600 rounded-full z-10 transition-all duration-300 opacity-0 group-hover:opacity-100"
-      >
-        <ChevronRight size={30} />
-      </button>
+  {/* PFEILE */}
+{product.images && product.images.length > 1 && (
+  <>
+    <button
+      onClick={prevImage}
+      /* Geändert: opacity-100 standardmäßig (mobil), lg:opacity-0 (Desktop versteckt) */
+      className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 p-2 text-white hover:bg-amber-600 rounded-full z-10 transition-all duration-300 opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+    >
+      <ChevronLeft size={30} />
+    </button>
+    <button
+      onClick={nextImage}
+      /* Geändert: opacity-100 standardmäßig (mobil), lg:opacity-0 (Desktop versteckt) */
+      className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 p-2 text-white hover:bg-amber-600 rounded-full z-10 transition-all duration-300 opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+    >
+      <ChevronRight size={30} />
+    </button>
 
-      {/* BILD-INDIKATOR (Punkte) */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {product.images.map((_, idx) => (
-          <div
-            key={idx}
-            className={`w-2 h-2 rounded-full transition-all ${
-              idx === currentImgIdx 
-                ? "bg-amber-500 w-4" 
-                : "bg-white/50"
-            }`}
-          />
-        ))}
-      </div>
-    </>
-  )}
+    {/* BILD-INDIKATOR (Punkte) */}
+    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      {product.images.map((_, idx) => (
+        <div
+          key={idx}
+          className={`w-2 h-2 rounded-full transition-all ${
+            idx === currentImgIdx 
+              ? "bg-amber-500 w-4" 
+              : "bg-white/50"
+          }`}
+        />
+      ))}
+    </div>
+  </>
+)}
 </div>
 
           {/* RECHTER TEIL: PRODUKT-INFOS */}

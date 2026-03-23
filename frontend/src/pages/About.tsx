@@ -22,24 +22,24 @@ function ServiceLinkSimple({ to }: { to: string }) {
   );
 }
 
-function ServiceLink({ to, icon, title, desc }: { to: string, icon: React.ReactNode, title: string, desc: string }) {
-  return (
-    <Link to={to} className="group flex flex-col justify-between bg-neutral-950 border border-amber-900/20 hover:border-amber-600/50 transition-all p-8 h-full">
-      <div>
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-16 h-16 bg-amber-900/30 flex items-center justify-center rounded-full text-amber-500">
-            {icon}
-          </div>
-          <h3 className="text-2xl text-amber-500 uppercase tracking-wide">{title}</h3>
-        </div>
-        <p className="text-neutral-300 mb-6">{desc}</p>
-      </div>
-      <div className="flex justify-end">
-        <ServiceArrow />
-      </div>
-    </Link>
-  );
-}
+// function ServiceLink({ to, icon, title, desc }: { to: string, icon: React.ReactNode, title: string, desc: string }) {
+//   return (
+//     <Link to={to} className="group flex flex-col justify-between bg-neutral-950 border border-amber-900/20 hover:border-amber-600/50 transition-all p-8 h-full">
+//       <div>
+//         <div className="flex items-center gap-4 mb-6">
+//           <div className="w-16 h-16 bg-amber-900/30 flex items-center justify-center rounded-full text-amber-500">
+//             {icon}
+//           </div>
+//           <h3 className="text-2xl text-amber-500 uppercase tracking-wide">{title}</h3>
+//         </div>
+//         <p className="text-neutral-300 mb-6">{desc}</p>
+//       </div>
+//       <div className="flex justify-end">
+//         <ServiceArrow />
+//       </div>
+//     </Link>
+//   );
+// }
 
 function AnimatedCounter({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -142,7 +142,7 @@ export function About() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Wir verbinden traditionelle Schmiedetechniken mit modernster Technologie. Unsere hochpräzisen Härteöfen garantieren exakte Temperaturen und damit eine perfekte Härtung für maximale Schärfe und Langlebigkeit.
+              Wir verbinden traditionelle Schmiedetechniken mit modernster Technologie. Unser  Härteofen garantiert exakte Temperaturen und damit eine perfekte Härtung für maximale Schärfe und Langlebigkeit.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, x: -50 }}
@@ -150,7 +150,7 @@ export function About() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Jedes unserer Messer ist ein Unikat - geschmiedet mit Hingabe, gehärtet mit Präzision und geschliffen mit jahrelanger Erfahrung. Qualität, die man spürt. Schärfe, die überzeugt.
+              Jedes unserer Messer ist ein Unikat - geschmiedet mit Hingabe und gehärtet mit Präzision.
             </motion.p>
           </div>
         </div>
@@ -234,7 +234,7 @@ export function About() {
                 Schneidwinkel
               </p>
               <p className="text-neutral-400 text-xs sm:text-sm">
-                Extrem rasiermesserscharf
+                Extrem Scharf
               </p>
             </motion.div>
           </div>
@@ -257,7 +257,7 @@ export function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               { icon: Heart, title: "Familienunternehmen", desc: "Persönlich, authentisch und mit ganzem Herzen bei der Sache", delay: 0.1 },
-              { icon: ThermometerSun, title: "Präzisions-Härtung", desc: "Hochpräzise Härteöfen für optimale Materialstruktur und Schärfe", delay: 0.2 },
+              { icon: ThermometerSun, title: "Präzisions-Härtung", desc: "Hochpräziser Härteofen für optimale Materialstruktur und Schärfe", delay: 0.2 },
               { icon: Shield, title: "Premium-Stahl", desc: "Nur hochwertigste Stahlsorten mit HRC 58-62 für maximale Qualität", delay: 0.3 },
               { icon: Sparkles, title: "Handgeschliffen", desc: "Jede Schneide wird von Hand gefertigt – kein Kompromiss", delay: 0.4 }
             ].map((item) => (
@@ -321,7 +321,7 @@ export function About() {
               </div>
 
               <p className="text-neutral-300 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-                Wir bringen Ihre stumpfen Messer wieder auf Hochglanz. Professionell und zuverlässig.
+                Wir bringen Ihre stumpfen Messer wieder auf Hochglanz
               </p>
 
               <div className="space-y-4">
@@ -388,7 +388,7 @@ export function About() {
               </div>
 
               <p className="text-neutral-300 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-                Speziell für Hobby-Schmiede: Professionelle Härtung Ihrer selbstgeschmiedeten Messer.
+                Speziell für Hobby-Schmiede: Professionelle Härtung Ihrer selbstgeschmiedeten Messer
               </p>
 
               <div className="space-y-3 sm:space-y-4">
@@ -455,7 +455,7 @@ export function About() {
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-amber-900 rounded opacity-25 group-hover:opacity-40 blur transition-opacity" />
                 <img
-                  src="https://images.unsplash.com/photo-1688398315798-477d9851dee4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                  src="/api/images/page/anvil.jpg"
                   alt="Handwerk"
                   className="relative w-full h-[300px] sm:h-[500px] object-cover border-4 border-amber-900/30"
                 />
@@ -474,7 +474,7 @@ export function About() {
               </h2>
               <div className="space-y-3 sm:space-y-4 text-neutral-300 leading-relaxed text-sm sm:text-base">
                 <p>
-                  In unserer modernen Werkstatt verschmelzen jahrhundertealte Schmiedetechniken mit hochmoderner Ausstattung. Unsere hochpräzisen Härteöfen garantieren eine perfekte Wärmebehandlung.
+                  In unserer modernen Werkstatt verschmelzen jahrhundertealte Schmiedetechniken mit hochmoderner Ausstattung. Unser hochpräziser Härteofen garantiert eine perfekte Wärmebehandlung.
                 </p>
               </div>
 

@@ -108,10 +108,6 @@ export function Schleifservice() {
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <p className="text-neutral-300 text-sm sm:text-base">Schnelle Bearbeitungszeit (1-2 Werktage)</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
                   <p className="text-neutral-300 text-sm sm:text-base">Gleichmäßiger Schliff mit reproduzierbaren Ergebnissen</p>
                 </div>
                 <div className="flex items-start gap-3">
@@ -166,10 +162,6 @@ export function Schleifservice() {
                 <div className="flex items-start gap-3">
                   <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
                   <p className="text-neutral-300 text-sm sm:text-base">Schonende Behandlung – erhält die Klingenstruktur</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <p className="text-neutral-300 text-sm sm:text-base">Bearbeitungszeit: 3-5 Werktage</p>
                 </div>
               </div>
 
@@ -255,12 +247,36 @@ export function Schleifservice() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { icon: Award, title: "Meisterliche Qualität", desc: "Geschliffen von erfahrenen Profis mit jahrelanger Expertise" },
-              { icon: Shield, title: "Schonende Behandlung", desc: "Wir behandeln Ihre Messer wie unsere eigenen – mit größter Sorgfalt" },
-              { icon: Clock, title: "Schnelle Bearbeitung", desc: "Kurze Wartezeiten, damit Sie schnell wieder arbeiten können" },
-              { icon: Sparkles, title: "Perfekte Schärfe", desc: "Rasiermesserscharf – ein Unterschied, den Sie sofort spüren werden" },
-              { icon: CheckCircle, title: "Faire Preise", desc: "Transparente Preisgestaltung ohne versteckte Kosten" },
-              { icon: Scissors, title: "Alle Messertypen", desc: "Von Küchenmessern bis Sammlerstücken – wir schleifen alles" }
+              {
+                icon: Award,
+                title: "Echtes Handwerk",
+                desc: "Präzises Schleifen von Hand, ohne industrielle Massenabfertigung."
+              },
+              {
+                icon: Shield,
+                title: "Sorgsame Behandlung",
+                desc: "Manueller Schliff, der Material schont und die Lebensdauer Ihrer Messer verlängert."
+              },
+              {
+                icon: Clock,
+                title: "Kurze Wartezeiten",
+                desc: "Bearbeitung innerhalb weniger Werktage nach Erhalt der Ware."
+              },
+              {
+                icon: Sparkles,
+                title: "Maximale Schärfe",
+                desc: "Feinabzug für eine langanhaltende und rasiermesserscharfe Schneide."
+              },
+              {
+                icon: CheckCircle,
+                title: "Faire Preise",
+                desc: "Ehrliche Abrechnung pro Messer, ohne versteckte Zusatzkosten."
+              },
+              {
+                icon: Scissors,
+                title: "Breites Spektrum",
+                desc: "Fachgerechter Service für Küchenmesser, Jagdmesser und Erbstücke."
+              }
             ].map((item, idx) => (
               <motion.div
                 key={idx}
