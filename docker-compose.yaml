@@ -17,11 +17,10 @@ services:
     build: ./frontend
     container_name: messerschmiede-frontend
     restart: unless-stopped
+    # Port 5173 löschen, wir nutzen jetzt den Standard-Web-Port 80 intern
     ports:
-      - '5173:5173'
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - '8080:80' 
+    # Volumes löschen! Wir wollen den fertigen Build IM Image haben, nicht den Quellcode spiegeln
 
   # Dein Backend (Node.js)
   backend:

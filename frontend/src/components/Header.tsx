@@ -38,10 +38,10 @@ const menuVariants = {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-5 group">
             <img
-              src="/logo.svg"
+              src="api/images/page/logo.svg"
               alt="Logo"
-              className="w-10 h-10 sm:w-12 sm:h-12 "
-              style={{ marginBottom: "7px" }}
+              className="w-10 h-10 sm:w-10 sm:h-10 "
+              style={{ marginBottom: "4px" }}
             />
             <div className="flex flex-col">
               <span className="text-xl sm:text-2xl font-serif tracking-wider text-amber-500 leading-none">

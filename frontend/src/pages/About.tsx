@@ -78,7 +78,7 @@ export function About() {
       >
         <div className="absolute inset-0">
           <img
-            src="../../public/Schmiede.jpg"
+            src="/api/images/page/Schmiede.jpg"
             alt="Werkstatt"
             className="w-full h-full object-cover"
           />

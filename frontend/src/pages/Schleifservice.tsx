@@ -8,7 +8,7 @@ export function Schleifservice() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="../../public/Schleifservice.jpg"
+            src="/api/images/page/schleifservice1.jpg"
             alt="Messerschleifen"
             className="w-full h-full object-cover"
           />
@@ -155,10 +155,6 @@ export function Schleifservice() {
               </p>
 
               <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <p className="text-neutral-300 text-sm sm:text-base">100% Handschliff von erfahrenem Meister</p>
-                </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
                   <p className="text-neutral-300 text-sm sm:text-base">Stufenweiser Schliff mit Steinen bis 8000er Körnung</p>

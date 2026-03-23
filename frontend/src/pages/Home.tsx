@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// HINZUGEFÜGT: Scissors und Zap. ENTFERNT: Loader2 (da ungenutzt)
 import { Flame, Hammer, Award, ArrowRight, Scissors, Zap } from "lucide-react";
 
 interface Product {
@@ -9,18 +8,20 @@ interface Product {
   price: string | number;
   description: string;
   category: string;
-  image: string;
+  image: string;      // Ordnername
+  images?: string[];  // Dateiliste vom Backend
 }
 
 export function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  // 'loading' wurde entfernt, da es im JSX unten nicht verwendet wurde
 
   useEffect(() => {
-    fetch("/api/products")
+    // Absolute URL zum Backend
+    fetch("https://messerschmiede-schwaiger.at/api/products")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
+          // Wir nehmen die ersten 3 Messer als "Featured"
           setFeaturedProducts(data.slice(0, 3));
         }
       })
@@ -34,41 +35,44 @@ export function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-8 md:py-12">
         <div className="absolute inset-0">
+          {/* Hinweis: Stelle sicher, dass das Bild in /public liegt oder via Import geladen wird */}
           <img
-            src="../../public/Schmiede.jpg"
+            src="/api/images/page/Schmiede.jpg"
             alt="Schmiede"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-neutral-950/50 to-neutral-950" />
         </div>
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-0 sm:px-4">
-          {/* px-0 für ganz kleine Handys, damit wir die volle Breite nutzen */}
-
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4">
           <div className="flex flex-col items-center justify-center text-center w-full">
             <Flame className="text-amber-500 w-10 h-10 md:w-16 md:h-16 mb-4 md:mb-6 shrink-0" />
 
-            <h1 className="font-serif text-white mb-6 leading-[1.1] uppercase w-full
-                   /* Wir nutzen 'break-words' und entfernen negatives Letter-Spacing */
-                   break-words tracking-tighter sm:tracking-wide
-                   /* Fluide Größe: 9.5% der Breite, aber auf kleinsten Geräten etwas kleiner */
-                   text-[9.5vw] sm:text-[7vw] lg:text-7xl">
-              Handgeschmiedete
-              <br className="block sm:hidden md:block" />
-              <span className="text-amber-500"> Meisterwerke</span>
+            <h1 className="font-serif text-white mb-6 leading-[1.1] uppercase w-full 
+               /* 1. Schriftgröße: Auf Mobile etwas kleiner (8vw), damit 'Handgeschmiedete' passt */
+               text-[8vw] sm:text-[7vw] lg:text-7xl 
+               /* 2. Umbruch-Schutz: Erlaubt Silbentrennung, falls das Wort zu lang ist */
+               break-words hyphens-auto
+               /* 3. Abstände: Tracking auf Mobile eng, damit mehr in eine Zeile passt */
+               tracking-tighter sm:tracking-wide text-center">
+
+              <span className="block sm:inline">Handgeschmiedete</span>
+
+              {/* Dieser Umbruch erscheint nur auf Tablets/PC, um das Design zu wahren */}
+              <br className="hidden sm:block" />
+
+              <span className="text-amber-500 block sm:inline"> Meisterwerke</span>
             </h1>
 
             <p className="text-sm sm:text-lg lg:text-xl text-neutral-300 mb-8 max-w-[90%] sm:max-w-2xl mx-auto leading-relaxed">
-              Jedes Messer ein Unikat. <br className="xs:hidden" />
-              Geschmiedet mit Leidenschaft.
+              Jedes Messer ein Unikat. <br />
+              Geschmiedet mit Leidenschaft und Präzision.
             </p>
 
             <div className="flex justify-center w-full px-4">
               <Link
                 to="/produkte"
-                className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white 
-                   px-5 py-3 md:px-8 md:py-4 uppercase tracking-wide transition-all 
-                   text-xs sm:text-base whitespace-nowrap shadow-xl"
+                className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-5 py-3 md:px-8 md:py-4 uppercase tracking-wide transition-all text-xs sm:text-base whitespace-nowrap shadow-xl"
               >
                 Messer entdecken <ArrowRight size={18} className="shrink-0" />
               </Link>
@@ -77,7 +81,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* Features Section - Jetzt nur auf PC sichtbar (hidden md:block) */}
+      {/* Features Section */}
       <section className="hidden md:block py-20 bg-neutral-900">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -109,33 +113,42 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <Link
-                key={product.id}
-                to={`/produkte/${product.id}`}
-                className="group bg-neutral-900 border border-amber-900/20 hover:border-amber-600/50 transition-all overflow-hidden"
-              >
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={`/${product.image}/main.jpg`}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    onError={(e) => {
-                      // Fallback: Falls main.jpg nicht existiert, versuche main.jpeg
-                      const target = e.target as HTMLImageElement;
-                      if (!target.src.endsWith('.jpeg')) {
-                        target.src = `/${product.image}/main.jpeg`;
-                      }
-                    }}
-                  />
-                </div>
-                <div className="p-6">
-                  <p className="text-amber-600 text-xs uppercase tracking-wide mb-2">{product.category}</p>
-                  <h3 className="text-xl text-white mb-2 group-hover:text-amber-500 transition-colors">{product.name}</h3>
-                  <p className="text-2xl text-amber-500">€{product.price}</p>
-                </div>
-              </Link>
-            ))}
+            {featuredProducts.map((product) => {
+              // Dynamische Bild-Logik (wie in ProductCard)
+              const fileName = (product.images && product.images.length > 0)
+                ? product.images[0]
+                : "main.jpg";
+              const imagePath = `https://messerschmiede-schwaiger.at/api/images/${product.image}/${fileName}`;
+
+              return (
+                <Link
+                  key={product.id}
+                  to={`/produkte/${product.id}`}
+                  className="group bg-neutral-900 border border-amber-900/20 hover:border-amber-600/50 transition-all overflow-hidden flex flex-col"
+                >
+                  <div className="aspect-square overflow-hidden bg-neutral-800">
+                    <img
+                      src={imagePath}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (!target.src.includes('placeholder')) {
+                          target.src = "https://via.placeholder.com/600x600.png?text=Bild+nicht+gefunden";
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="p-6">
+                    <p className="text-amber-600 text-xs uppercase tracking-wide mb-2">{product.category}</p>
+                    <h3 className="text-xl text-white mb-2 group-hover:text-amber-500 transition-colors">{product.name}</h3>
+                    <p className="text-2xl text-amber-500 font-serif">
+                      €{Number(product.price).toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -161,7 +174,7 @@ export function Home() {
   );
 }
 
-// Hilfskomponenten für sauberen Code
+// Hilfskomponenten
 function FeatureCard({ icon, title, text }: { icon: React.ReactNode, title: string, text: string }) {
   return (
     <div className="text-center group">
@@ -187,14 +200,8 @@ function ServiceLink({ to, icon, title, desc }: { to: string, icon: React.ReactN
         <p className="text-neutral-300 mb-6">{desc}</p>
       </div>
 
-      {/* Der Pfeil-Button: Rechts positioniert, Mobile immer Orange */}
       <div className="flex justify-end">
-        <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300
-          /* Mobile: Immer Orange mit schwarzem Pfeil */
-          bg-amber-600 text-black 
-          /* Desktop (ab md): Erst nur Rahmen, bei Hover Orange */
-          md:bg-transparent md:text-amber-500 md:border md:border-amber-600/50 
-          md:group-hover:bg-amber-600 md:group-hover:text-black md:group-hover:translate-x-2">
+        <div className="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 bg-amber-600 text-black md:bg-transparent md:text-amber-500 md:border md:border-amber-600/50 md:group-hover:bg-amber-600 md:group-hover:text-black md:group-hover:translate-x-2">
           <ArrowRight size={20} />
         </div>
       </div>

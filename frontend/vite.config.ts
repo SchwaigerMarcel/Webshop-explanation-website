@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite' // <-- Neu importieren
 
 export default defineConfig({
+  build: {
+    sourcemap: false, // Verhindert, dass Quellcode im Browser rekonstruiert werden kann
+  },
   plugins: [
     react(),
     tailwindcss(), // <-- Hier als Plugin hinzufügen

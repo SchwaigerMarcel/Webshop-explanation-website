@@ -3,6 +3,12 @@ import { useState, useEffect } from "react";
 import { ArrowLeft, Check, Loader2, ChevronLeft, ChevronRight, Phone, Mail, X } from "lucide-react";
 
 const API_BASE_URL = "https://messerschmiede-schwaiger.at/api";
+
+interface Spec {
+  label: string;
+  value: string;
+}
+
 interface Product {
   id: number;
   name: string;
@@ -13,7 +19,7 @@ interface Product {
   image: string;
   images: string[];
   features: string[];
-  specifications: { label: string; value: string }[];
+  specifications: Spec[];
 }
 
 export function ProductDetail() {
@@ -22,39 +28,31 @@ export function ProductDetail() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false); // Für die Großansicht
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   useEffect(() => {
-    console.log("1. ProductDetail geladen für ID:", id); // Muss in der Konsole erscheinen!
     window.scrollTo(0, 0);
+    if (!id) return;
 
-    if (!id) {
-      console.error("Fehler: Keine ID in der URL gefunden!");
-      return;
-    }
-
-    const fetchUrl = `/api/products/${id}`;
-    console.log("2. Starte Fetch an:", fetchUrl);
-
-    fetch(fetchUrl)
+    // Absoluter Pfad mit API_BASE_URL verhindert 404
+    fetch(`${API_BASE_URL}/products/${id}`)
       .then((res) => {
-        console.log("3. Server Antwort-Status:", res.status);
         if (!res.ok) throw new Error(`HTTP Fehler! Status: ${res.status}`);
         return res.json();
       })
       .then((data) => {
-        console.log("4. Daten erfolgreich empfangen:", data);
         setProduct(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("5. Kritischer Fehler beim Laden:", err);
+        console.error("Fehler beim Laden:", err);
         setLoading(false);
       });
   }, [id]);
 
+  // --- HIER SIND DIE FEHLENDEN FUNKTIONEN ---
   const nextImage = (e?: React.MouseEvent) => {
-    e?.stopPropagation(); // Verhindert, dass die Lightbox beim Klicken auf Pfeile öffnet
+    e?.stopPropagation();
     if (!product?.images) return;
     setCurrentImgIdx((prev) => (prev + 1) % product.images.length);
   };
@@ -65,6 +63,9 @@ export function ProductDetail() {
     setCurrentImgIdx((prev) => (prev - 1 + product.images.length) % product.images.length);
   };
 
+  const getImageUrl = (imgName: string) => 
+    `${API_BASE_URL}/images/${product?.image}/${imgName}`;
+
   if (loading) {
     return (
       <div className="bg-neutral-950 min-h-screen flex items-center justify-center">
@@ -73,26 +74,30 @@ export function ProductDetail() {
     );
   }
 
-  if (!product) return null;
+  if (!product) {
+    return (
+      <div className="bg-neutral-950 min-h-screen flex flex-col items-center justify-center text-white">
+        <p className="mb-4">Messer wurde nicht gefunden.</p>
+        <Link to="/produkte" className="text-amber-500 underline">Zurück zur Übersicht</Link>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-neutral-950 min-h-screen py-12">
-      {/* LIGHTBOX / GROSSANSICHT */}
+      {/* LIGHTBOX */}
       {isLightboxOpen && (
         <div
-          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-10"
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 cursor-zoom-out"
           onClick={() => setIsLightboxOpen(false)}
         >
           <button className="absolute top-6 right-6 text-white hover:text-amber-500 transition-colors">
             <X size={40} />
           </button>
           <img
-            src={`https://messerschmiede-schwaiger.at/api/images/${product.image}/${product.images[currentImgIdx]}`}
+            src={getImageUrl(product.images[currentImgIdx])}
             alt={product.name}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              console.error("Bild nicht gefunden unter:", (e.target as HTMLImageElement).src);
-            }}
+            className="max-w-full max-h-full object-contain shadow-2xl"
           />
         </div>
       )}
@@ -108,51 +113,54 @@ export function ProductDetail() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* BILDER SLIDER */}
+<div
+  onClick={() => setIsLightboxOpen(true)}
+  className="relative aspect-square bg-neutral-900 border border-amber-900/20 group overflow-hidden shadow-2xl cursor-zoom-in rounded-sm"
+>
+  {product.images && product.images.length > 0 ? (
+    <img
+      src={getImageUrl(product.images[currentImgIdx])}
+      alt={product.name}
+      className="w-full h-full object-cover transition-transform duration-700"
+    />
+  ) : (
+    <div className="flex items-center justify-center h-full text-neutral-500">
+      Kein Bild verfügbar
+    </div>
+  )}
+
+  {/* PFEILE: Nur sichtbar bei Hover (group-hover) */}
+  {product.images && product.images.length > 1 && (
+    <>
+      <button
+        onClick={prevImage}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 p-2 text-white hover:bg-amber-600 rounded-full z-10 transition-all duration-300 opacity-0 group-hover:opacity-100"
+      >
+        <ChevronLeft size={30} />
+      </button>
+      <button
+        onClick={nextImage}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 p-2 text-white hover:bg-amber-600 rounded-full z-10 transition-all duration-300 opacity-0 group-hover:opacity-100"
+      >
+        <ChevronRight size={30} />
+      </button>
+
+      {/* BILD-INDIKATOR (Punkte) */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {product.images.map((_, idx) => (
           <div
-            onClick={() => setIsLightboxOpen(true)}
-            className="relative aspect-square bg-neutral-900 border border-amber-900/20 group overflow-hidden shadow-2xl cursor-zoom-in"
-          >
-            {product && product.images && product.images.length > 0 ? (
-              <img
-                src={`${API_BASE_URL}/images/products/${product.image}/${product.images[currentImgIdx]}`}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="flex items-center justify-center h-full text-neutral-500">
-                Bild wird geladen oder fehlt...
-              </div>
-            )}
-
-            {/* Navigations-Pfeile: Mobil immer sichtbar, Desktop hover */}
-            {product.images && product.images.length > 1 && (
-              <>
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 text-white transition-opacity lg:opacity-0 lg:group-hover:opacity-100 hover:bg-amber-600 rounded-full z-10"
-                >
-                  <ChevronLeft size={30} />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 text-white transition-opacity lg:opacity-0 lg:group-hover:opacity-100 hover:bg-amber-600 rounded-full z-10"
-                >
-                  <ChevronRight size={30} />
-                </button>
-
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                  {product.images.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={(e) => { e.stopPropagation(); setCurrentImgIdx(idx); }}
-                      className={`h-2 rounded-full transition-all ${idx === currentImgIdx ? 'bg-amber-500 w-6' : 'bg-white/30 w-2'
-                        }`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
+            key={idx}
+            className={`w-2 h-2 rounded-full transition-all ${
+              idx === currentImgIdx 
+                ? "bg-amber-500 w-4" 
+                : "bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </>
+  )}
+</div>
 
           {/* RECHTER TEIL: PRODUKT-INFOS */}
           <div>
@@ -160,7 +168,7 @@ export function ProductDetail() {
             <h1 className="text-4xl font-serif text-white mb-4 uppercase">{product.name}</h1>
             <p className="text-3xl text-amber-500 mb-6">€{Number(product.price).toFixed(2)}</p>
 
-            <p className="text-neutral-300 leading-relaxed mb-8">
+            <p className="text-neutral-300 leading-relaxed mb-8 whitespace-pre-line">
               {product.long_description || product.description}
             </p>
 
@@ -183,7 +191,7 @@ export function ProductDetail() {
             {product.specifications && product.specifications.length > 0 && (
               <div className="mb-8">
                 <h2 className="text-xl text-amber-500 uppercase tracking-wide mb-4">Technische Daten</h2>
-                <div className="bg-neutral-900 border border-amber-900/20 p-6 shadow-inner">
+                <div className="bg-neutral-900 border border-amber-900/20 p-6">
                   <dl className="space-y-3">
                     {product.specifications.map((spec, index) => (
                       <div key={index} className="flex justify-between py-2 border-b border-neutral-800 last:border-0">

@@ -8,7 +8,7 @@ export function Härteservice() {
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="../../public/Härteservice.jpg"
+            src="/api/images/page/härteservice.jpg"
             alt="Härteofen"
             className="w-full h-full object-cover"
           />
