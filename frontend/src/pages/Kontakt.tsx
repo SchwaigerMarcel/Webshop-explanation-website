@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send, Flame } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Flame } from "lucide-react";
 
 export function Kontakt() {
     const containerVariants = {

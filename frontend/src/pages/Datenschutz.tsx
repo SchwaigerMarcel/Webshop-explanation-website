@@ -54,7 +54,7 @@ export function Datenschutz() {
                 <div className="bg-neutral-900 p-4 border border-amber-900/20">
                   <p className="font-bold text-amber-500">Leon Schwaiger</p>
                   <p>Messerschmiede Schwaiger</p>
-                  <p>Schwaigaustraße 119</p>
+                  <p>Suttnerstraße 25</p>
                   <p>4030 Linz</p>
                   <p className="mt-2">Österreich</p>
                   <p className="mt-2 italic">E-Mail: info@messerschmiede-schwaiger.at</p>

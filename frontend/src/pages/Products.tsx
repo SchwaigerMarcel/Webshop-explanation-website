@@ -12,7 +12,15 @@ export function Products() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Nutze den vollen Pfad, um Probleme mit dem Proxy zu vermeiden
+    // --- SEO & UX ---
+    window.scrollTo(0, 0);
+    document.title = "Unsere Meisterstücke | Messerschmiede Schwaiger";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Entdecken Sie unsere Kollektion handgefertigter Messer: Von Profi-Küchenmessern bis hin zu robusten Outdoor- und Jagdmessern. Jedes Stück ein Unikat.");
+    }
+
+    // --- DATA FETCH ---
     fetch("https://messerschmiede-schwaiger.at/api/products")
       .then((res) => {
         if (!res.ok) throw new Error("Fehler beim Laden der Produkte");
@@ -71,11 +79,10 @@ export function Products() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-8 py-2 text-sm uppercase tracking-widest transition-all duration-300 border ${
-                selectedCategory === cat
+              className={`px-8 py-2 text-sm uppercase tracking-widest transition-all duration-300 border ${selectedCategory === cat
                   ? "bg-amber-600 border-amber-600 text-white shadow-[0_0_15px_rgba(217,119,6,0.3)]"
                   : "border-neutral-800 text-neutral-500 hover:border-amber-600/50 hover:text-amber-500"
-              }`}
+                }`}
             >
               {cat}
             </button>

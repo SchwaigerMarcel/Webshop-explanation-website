@@ -6,8 +6,8 @@ export interface Product {
   price: string | number;
   description: string;
   category: string;
-  image: string;      // Der Ordnername (z.B. 'amber')
-  images?: string[];  // Das Array vom Backend (z.B. ['main.png', '1.jpg'])
+  image: string;      // Der Basis-Ordnername (z.B. 'amber')
+  mainImage?: string; // Der Pfad zum Hauptbild (z.B. 'amber/main/1.jpg') vom Backend
 }
 
 interface ProductCardProps {
@@ -15,14 +15,11 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  // 1. Wir nehmen das, was das Backend als erstes im Array liefert (ist meistens 'main.*')
-  // 2. Fallback auf 'main.jpg', falls das Array aus irgendeinem Grund leer ist
-  const fileName = product.images && product.images.length > 0 
-    ? product.images[0] 
-    : "main.jpg";
-
-  // Die absolute URL stellt sicher, dass das Bild von überall (auch Detailseiten) geladen wird
-  const imageSrc = `https://messerschmiede-schwaiger.at/api/images/${product.image}/${fileName}`;
+  // 1. Wir priorisieren das 'mainImage' vom Backend (Struktur: ordner/main/datei.jpg)
+  // 2. Falls das fehlt, bauen wir einen Fallback
+  const imageSrc = product.mainImage 
+    ? `https://messerschmiede-schwaiger.at/api/images/${product.mainImage}`
+    : `https://messerschmiede-schwaiger.at/api/images/${product.image}/main.jpg`;
 
   return (
     <Link
@@ -32,19 +29,17 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Image Container */}
       <div className="aspect-square overflow-hidden bg-neutral-800 relative">
         <img
-          src={imageSrc}
+          src={`${imageSrc}`} // Zeitstempel verhindert Cache-Probleme beim Bildtausch
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            // Verhindert Endlosschleife, falls der Platzhalter auch nicht lädt
             if (!target.src.includes('via.placeholder.com')) {
-              target.src = "https://via.placeholder.com/600x600.png?text=Bild+nicht+gefunden";
+              target.src = "https://via.placeholder.com/600x600.png?text=Bild+wird+geladen...";
             }
           }}
         />
-        {/* Subtiles Overlay beim Hover */}
-        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-25 transition-opacity duration-300" />
       </div>
 
       {/* Content */}

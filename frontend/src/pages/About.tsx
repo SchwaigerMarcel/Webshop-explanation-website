@@ -14,6 +14,8 @@ const ServiceArrow = () => (
   </div>
 );
 
+
+
 function ServiceLinkSimple({ to }: { to: string }) {
   return (
     <Link to={to} className="group block w-fit">
@@ -66,6 +68,13 @@ function AnimatedCounter({ end, suffix = "", duration = 2 }: { end: number; suff
 // --- HAUPTKOMPONENTE ---
 
 export function About() {
+  useEffect(() => {
+    document.title = "Über uns | Messerschmiede Schwaiger - Tradition & Handwerk";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Erfahren Sie mehr über die Messerschmiede Schwaiger in Oberösterreich. Wir vereinen traditionelle Schmiedekunst mit modernster Härtetechnik für Unikate höchster Güte.");
+    }
+  }, []);
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
@@ -108,7 +117,7 @@ export function About() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed px-2"
           >
-            Ein Familienunternehmen, das Tradition und Qualität in jedem Messer vereint
+            Ein Familienunternehmen aus Oberösterreich, das traditionelles Handwerk und Qualität in jedem handgeschmiedeten Messer vereint.
           </motion.p>
         </div>
       </motion.section>
@@ -383,7 +392,7 @@ export function About() {
                   <Zap className="text-amber-500 w-6 h-6 sm:w-7 sm:h-7" />
                 </div>
                 <h3 className="text-xl sm:text-2xl text-amber-500 uppercase tracking-wide">
-                  Härtservice
+                  Härteservice
                 </h3>
               </div>
 

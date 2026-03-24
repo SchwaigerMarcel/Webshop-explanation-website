@@ -1,7 +1,17 @@
 import { motion } from "framer-motion"; // Falls motion/react nicht geht, wieder auf framer-motion wechseln
 import { Zap, ThermometerSun, Shield, CheckCircle, Users, Award} from "lucide-react";
+import { useEffect } from "react";
 
 export function Härteservice() {
+  useEffect(() => {
+    // --- SEO & UX ---
+    window.scrollTo(0, 0);
+    document.title = "Härteservice | Messerschmiede Schwaiger";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Professionelle Wärmebehandlung für Ihre Messerklingen. Digital gesteuerter Härteofen mit ±2°C Präzision für optimale Gefügebildung und Standzeit.");
+    }
+  }, []);
   return (
     <div className="bg-neutral-950">
       {/* Hero Section */}

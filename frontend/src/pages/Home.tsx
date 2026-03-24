@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Flame, Hammer, Award, ArrowRight, Scissors, Zap } from "lucide-react";
 
+// Interface an die neue Backend-Struktur angepasst
 interface Product {
   id: number;
   name: string;
@@ -9,19 +10,27 @@ interface Product {
   description: string;
   category: string;
   image: string;      // Ordnername
-  images?: string[];  // Dateiliste vom Backend
+  mainImage?: string; // Pfad vom Backend (z.B. "amber/main/bild.jpg")
 }
 
 export function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const API_BASE = "https://messerschmiede-schwaiger.at/api";
 
   useEffect(() => {
-    // Absolute URL zum Backend
-    fetch("https://messerschmiede-schwaiger.at/api/products")
+    // --- SEO OPTIMIERUNG ---
+    document.title = "Messerschmiede Schwaiger | Handgefertigte Messer & Unikate";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Exklusive handgeschmiedete Messer aus Meisterhand. Entdecken Sie unsere Unikate, Profi-Schleifservice und präzisen Härteservice in Oberösterreich.");
+    }
+
+    // --- DATEN FETCH ---
+    fetch(`${API_BASE}/products`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          // Wir nehmen die ersten 3 Messer als "Featured"
+          // Die ersten 3 Messer als "Featured"
           setFeaturedProducts(data.slice(0, 3));
         }
       })
@@ -35,9 +44,9 @@ export function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-8 md:py-12">
         <div className="absolute inset-0">
-          {/* Hinweis: Stelle sicher, dass das Bild in /public liegt oder via Import geladen wird */}
+          {/* Korrigierter Pfad für das Hintergrundbild */}
           <img
-            src="/api/images/page/Schmiede.jpg"
+            src={`${API_BASE}/images/page/Schmiede.jpg`}
             alt="Schmiede"
             className="w-full h-full object-cover"
           />
@@ -48,19 +57,9 @@ export function Home() {
           <div className="flex flex-col items-center justify-center text-center w-full">
             <Flame className="text-amber-500 w-10 h-10 md:w-16 md:h-16 mb-4 md:mb-6 shrink-0" />
 
-            <h1 className="font-serif text-white mb-6 leading-[1.1] uppercase w-full 
-               /* 1. Schriftgröße: Auf Mobile etwas kleiner (8vw), damit 'Handgeschmiedete' passt */
-               text-[8vw] sm:text-[7vw] lg:text-7xl 
-               /* 2. Umbruch-Schutz: Erlaubt Silbentrennung, falls das Wort zu lang ist */
-               break-words hyphens-auto
-               /* 3. Abstände: Tracking auf Mobile eng, damit mehr in eine Zeile passt */
-               tracking-tighter sm:tracking-wide text-center">
-
+            <h1 className="font-serif text-white mb-6 leading-[1.1] uppercase w-full text-[8vw] sm:text-[7vw] lg:text-7xl break-words hyphens-auto tracking-tighter sm:tracking-wide text-center">
               <span className="block sm:inline">Handgeschmiedete</span>
-
-              {/* Dieser Umbruch erscheint nur auf Tablets/PC, um das Design zu wahren */}
               <br className="hidden sm:block" />
-
               <span className="text-amber-500 block sm:inline"> Meisterwerke</span>
             </h1>
 
@@ -108,17 +107,16 @@ export function Home() {
       <section className="pt-10 pb-20 md:py-20 bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif text-amber-500 mb-4">AUSGEWÄHLTE MESSER</h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-amber-500 mb-4 uppercase">Ausgewählte Messer</h2>
             <p className="text-neutral-400">Eine Auswahl unserer handgeschmiedeten Meisterstücke</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProducts.map((product) => {
-              // Dynamische Bild-Logik (wie in ProductCard)
-              const fileName = (product.images && product.images.length > 0)
-                ? product.images[0]
-                : "main.jpg";
-              const imagePath = `https://messerschmiede-schwaiger.at/api/images/${product.image}/${fileName}`;
+              // NEUE LOGIK: Nutzt das mainImage Feld aus der server.js
+              const imagePath = product.mainImage 
+                ? `${API_BASE}/images/${product.mainImage}`
+                : `${API_BASE}/images/${product.image}/main.jpg`;
 
               return (
                 <Link
@@ -128,7 +126,7 @@ export function Home() {
                 >
                   <div className="aspect-square overflow-hidden bg-neutral-800">
                     <img
-                      src={imagePath}
+                      src={`${imagePath}`} // Zeitstempel gegen Cache-Probleme
                       alt={product.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       onError={(e) => {
@@ -141,9 +139,9 @@ export function Home() {
                   </div>
                   <div className="p-6">
                     <p className="text-amber-600 text-xs uppercase tracking-wide mb-2">{product.category}</p>
-                    <h3 className="text-xl text-white mb-2 group-hover:text-amber-500 transition-colors">{product.name}</h3>
+                    <h3 className="text-xl text-white mb-2 group-hover:text-amber-500 transition-colors font-serif italic">{product.name}</h3>
                     <p className="text-2xl text-amber-500 font-serif">
-                      €{Number(product.price).toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+                      €{Number(product.price).toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </p>
                   </div>
                 </Link>
@@ -174,7 +172,7 @@ export function Home() {
   );
 }
 
-// Hilfskomponenten
+// Hilfskomponenten (unverändert)
 function FeatureCard({ icon, title, text }: { icon: React.ReactNode, title: string, text: string }) {
   return (
     <div className="text-center group">
