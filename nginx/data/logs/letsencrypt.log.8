@@ -1,0 +1,464 @@
+2026-03-22 20:37:31,804:DEBUG:certbot._internal.main:certbot version: 5.3.1
+2026-03-22 20:37:31,804:DEBUG:certbot._internal.main:Location of certbot entry point: /opt/certbot/bin/certbot
+2026-03-22 20:37:31,804:DEBUG:certbot._internal.main:Arguments: ['--config', '/etc/letsencrypt.ini', '--work-dir', '/tmp/letsencrypt-lib', '--logs-dir', '/data/logs', '--cert-name', 'npm-7', '--agree-tos', '--authenticator', 'webroot', '-m', 'marcelschwaiger0@gmail.com', '--preferred-challenges', 'http', '--domains', 'messerschmiede-schwaiger.at,www.messerschmiede-schwaiger.at']
+2026-03-22 20:37:31,804:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#dns-google,PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-03-22 20:37:31,815:DEBUG:certbot._internal.log:Root logging level set at 30
+2026-03-22 20:37:31,816:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-03-22 20:37:31,816:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * webroot
+Description: Saves the necessary validation files to a .well-known/acme-challenge/ directory within the nominated webroot path. A separate HTTP server must be running and serving files from the webroot path. HTTP challenge only (wildcards not supported).
+Interfaces: Authenticator, Plugin
+Entry point: EntryPoint(name='webroot', value='certbot._internal.plugins.webroot:Authenticator', group='certbot.plugins')
+Initialized: <certbot._internal.plugins.webroot.Authenticator object at 0x7f829facd0>
+Prep: True
+2026-03-22 20:37:31,818:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.webroot.Authenticator object at 0x7f829facd0> and installer None
+2026-03-22 20:37:31,818:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator webroot, Installer None
+2026-03-22 20:37:32,038:DEBUG:certbot._internal.main:Picked account: <Account(RegistrationResource(body=Registration(key=None, contact=(), agreement=None, status=None, terms_of_service_agreed=None, only_return_existing=None, external_account_binding=None), uri='https://acme-v02.api.letsencrypt.org/acme/acct/3169650261', new_authzr_uri=None, terms_of_service=None), 088ea21abf289812e8d6185e2f17fa09, Meta(creation_dt=datetime.datetime(2026, 3, 22, 20, 24, 58, tzinfo=datetime.timezone.utc), creation_host='281f218b05d2', register_to_eff=None))>
+2026-03-22 20:37:32,039:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2026-03-22 20:37:32,040:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2026-03-22 20:37:32,544:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 1033
+2026-03-22 20:37:32,545:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:32 GMT
+Content-Type: application/json
+Content-Length: 1033
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "ZCnglHTJVl8": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "profiles": {
+      "classic": "https://letsencrypt.org/docs/profiles#classic",
+      "shortlived": "https://letsencrypt.org/docs/profiles#shortlived",
+      "tlsclient": "https://letsencrypt.org/docs/profiles#tlsclient",
+      "tlsserver": "https://letsencrypt.org/docs/profiles#tlsserver"
+    },
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.6-August-18-2025.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "renewalInfo": "https://acme-v02.api.letsencrypt.org/acme/renewal-info",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert"
+}
+2026-03-22 20:37:32,546:DEBUG:certbot._internal.display.obj:Notifying user: Requesting a certificate for messerschmiede-schwaiger.at and www.messerschmiede-schwaiger.at
+2026-03-22 20:37:32,549:DEBUG:acme.client:Requesting fresh nonce
+2026-03-22 20:37:32,549:DEBUG:acme.client:Sending HEAD request to https://acme-v02.api.letsencrypt.org/acme/new-nonce.
+2026-03-22 20:37:32,711:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "HEAD /acme/new-nonce HTTP/1.1" 200 0
+2026-03-22 20:37:32,711:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:32 GMT
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: O7NrciM4tLQ6NIjkWR8FD1jI5mBqb9eIukr5xiDVBIzTqa_RUVM
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+
+2026-03-22 20:37:32,711:DEBUG:acme.client:Storing nonce: O7NrciM4tLQ6NIjkWR8FD1jI5mBqb9eIukr5xiDVBIzTqa_RUVM
+2026-03-22 20:37:32,711:DEBUG:acme.client:JWS payload:
+b'{\n  "identifiers": [\n    {\n      "type": "dns",\n      "value": "messerschmiede-schwaiger.at"\n    },\n    {\n      "type": "dns",\n      "value": "www.messerschmiede-schwaiger.at"\n    }\n  ]\n}'
+2026-03-22 20:37:32,716:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/new-order:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMzE2OTY1MDI2MSIsICJub25jZSI6ICJPN05yY2lNNHRMUTZOSWprV1I4RkQxakk1bUJxYjllSXVrcjV4aURWQkl6VHFhX1JVVk0iLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL25ldy1vcmRlciJ9",
+  "signature": "Di2BUbXrSF2CcyCbu3L-ZOYfYYFNXyA1gwL1sFmAk8H7r5je8KEuBKAr2vmGSfychIbDyp4GV3Wuy0D_Q1Is6K7RXdaCf4HSFOswloubQHIeMy4anXjcmrxVeS-3gnRMQt82n9CIietCBjg-sNnliC-YMN4R5RvR-c5cCM5vrYOynZWZUWJT_KLMbuvxR5YkNe-k4fgbpKkyrqJ5Z5d0mIVQtDWl0YWnh3-WDFoJHOYfeBPxhWxzBcJe1yQKF9unA4yNjlzqZiOjMLneia1tU7zqoXcju-GxNKPiwarHUWIdYRNI6KMQSEWt_H-MiVa5Sg1zemP6denKEAmyx3tRCw",
+  "payload": "ewogICJpZGVudGlmaWVycyI6IFsKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwKICAgICAgInZhbHVlIjogIm1lc3NlcnNjaG1pZWRlLXNjaHdhaWdlci5hdCIKICAgIH0sCiAgICB7CiAgICAgICJ0eXBlIjogImRucyIsCiAgICAgICJ2YWx1ZSI6ICJ3d3cubWVzc2Vyc2NobWllZGUtc2Nod2FpZ2VyLmF0IgogICAgfQogIF0KfQ"
+}
+2026-03-22 20:37:33,037:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/new-order HTTP/1.1" 201 523
+2026-03-22 20:37:33,038:DEBUG:acme.client:Received response:
+HTTP 201
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:32 GMT
+Content-Type: application/json
+Content-Length: 523
+Connection: keep-alive
+Boulder-Requester: 3169650261
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Location: https://acme-v02.api.letsencrypt.org/acme/order/3169650261/493236908111
+Replay-Nonce: YrllWrIAuk693hrcpHqLgsquy9rTeW1r_akQUy5ujdnuQKrpdbw
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "status": "pending",
+  "expires": "2026-03-29T20:37:32Z",
+  "identifiers": [
+    {
+      "type": "dns",
+      "value": "messerschmiede-schwaiger.at"
+    },
+    {
+      "type": "dns",
+      "value": "www.messerschmiede-schwaiger.at"
+    }
+  ],
+  "authorizations": [
+    "https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953601",
+    "https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953691"
+  ],
+  "finalize": "https://acme-v02.api.letsencrypt.org/acme/finalize/3169650261/493236908111"
+}
+2026-03-22 20:37:33,038:DEBUG:acme.client:Storing nonce: YrllWrIAuk693hrcpHqLgsquy9rTeW1r_akQUy5ujdnuQKrpdbw
+2026-03-22 20:37:33,038:DEBUG:acme.client:JWS payload:
+b''
+2026-03-22 20:37:33,042:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953601:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMzE2OTY1MDI2MSIsICJub25jZSI6ICJZcmxsV3JJQXVrNjkzaHJjcEhxTGdzcXV5OXJUZVcxcl9ha1FVeTV1amRudVFLcnBkYnciLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzMxNjk2NTAyNjEvNjc3MDk1OTUzNjAxIn0",
+  "signature": "cKMRqd7VlS8lB96d37F6oQt5gvbwDCCw7S17gwAtXdaU4QrxD3rFzEgLJmD_sN1STO6jyuLo2ZzpVtqo6GXCrTW2QIm5_MupJ9Hb33XpEz-IzV42Wggjj8NOCdO_sNMKS2Z7cgRWd_VHdKolVrovjIw_il6A5pvPeQMhUJ9lbTydVR_1qRaLcYsST2OdheVgo2WpN7xLeqJuaiGkmdjiqjIeho7PbQbSaUku-_rLO29uZIyfTJ0EbkAiCBA4EM2h8qXqh7eEnxAZmUVRcafChhubzg_QRLwaJg9_yZd3y_OT_g9PqFc14cHBe-VKLanfaUgKSGGvkwQ1E0WxWzYg4w",
+  "payload": ""
+}
+2026-03-22 20:37:33,204:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/3169650261/677095953601 HTTP/1.1" 200 835
+2026-03-22 20:37:33,204:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:33 GMT
+Content-Type: application/json
+Content-Length: 835
+Connection: keep-alive
+Boulder-Requester: 3169650261
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: YrllWrIAdJ4axLNQTo0iJxFgTwtX1jdBO7zp0bxrN-UNmElxwSE
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "messerschmiede-schwaiger.at"
+  },
+  "status": "pending",
+  "expires": "2026-03-29T20:37:32Z",
+  "challenges": [
+    {
+      "type": "tls-alpn-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/ccdqzg",
+      "status": "pending",
+      "token": "DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0"
+    },
+    {
+      "type": "dns-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/B-ky-A",
+      "status": "pending",
+      "token": "DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0"
+    },
+    {
+      "type": "http-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/D16sqw",
+      "status": "pending",
+      "token": "DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0"
+    }
+  ]
+}
+2026-03-22 20:37:33,205:DEBUG:acme.client:Storing nonce: YrllWrIAdJ4axLNQTo0iJxFgTwtX1jdBO7zp0bxrN-UNmElxwSE
+2026-03-22 20:37:33,205:DEBUG:acme.challenges:tls-alpn-01 was not recognized, full message: {'type': 'tls-alpn-01', 'url': 'https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/ccdqzg', 'status': 'pending', 'token': 'DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0'}
+2026-03-22 20:37:33,205:DEBUG:acme.client:JWS payload:
+b''
+2026-03-22 20:37:33,209:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953691:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMzE2OTY1MDI2MSIsICJub25jZSI6ICJZcmxsV3JJQWRKNGF4TE5RVG8waUp4RmdUd3RYMWpkQk83enAwYnhyTi1VTm1FbHh3U0UiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzMxNjk2NTAyNjEvNjc3MDk1OTUzNjkxIn0",
+  "signature": "A3pmcAsVAqQ3YXrrqehX4Td0zzG553K2wRXcR34oxJ42CSSLSYdIzBHxFRy7oYs8QcjiAgvN-CsC23deS19NSARsR_PrvL1xg_tuCNrJMRVJpDnXbweqTi5hZ0t8V4J1dsEAp-Wv3UWoVM9fZ3ggLMCo931aG-jRWiItxco-JdrbXjD5W30EV4QUlQ7SECTNRTCtN8kv6z-msRf9HQHE0_aaC57uVtoMulEsLYdrmQ5QbzmEY7y0OU8WLo3oyEcpUrA-7UsoHswn5scxinKOJwa8zaQdlHCLC3Bl--rcFDTlm3L8kGvLPCAUqf9Pbx4u4UGt_xEHI8sbj-kom-Q0Gg",
+  "payload": ""
+}
+2026-03-22 20:37:33,374:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/3169650261/677095953691 HTTP/1.1" 200 839
+2026-03-22 20:37:33,375:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:33 GMT
+Content-Type: application/json
+Content-Length: 839
+Connection: keep-alive
+Boulder-Requester: 3169650261
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: O7NrciM4lSDw3ILQmEj6ZFnPQ-Nk0Ja1QVRPgEHv440Wvyo1jm4
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "www.messerschmiede-schwaiger.at"
+  },
+  "status": "pending",
+  "expires": "2026-03-29T20:37:32Z",
+  "challenges": [
+    {
+      "type": "dns-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/5UlIFw",
+      "status": "pending",
+      "token": "Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ"
+    },
+    {
+      "type": "http-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/TgoQ-A",
+      "status": "pending",
+      "token": "Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ"
+    },
+    {
+      "type": "tls-alpn-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/EwgLdw",
+      "status": "pending",
+      "token": "Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ"
+    }
+  ]
+}
+2026-03-22 20:37:33,375:DEBUG:acme.client:Storing nonce: O7NrciM4lSDw3ILQmEj6ZFnPQ-Nk0Ja1QVRPgEHv440Wvyo1jm4
+2026-03-22 20:37:33,375:DEBUG:acme.challenges:tls-alpn-01 was not recognized, full message: {'type': 'tls-alpn-01', 'url': 'https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/EwgLdw', 'status': 'pending', 'token': 'Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ'}
+2026-03-22 20:37:33,375:INFO:certbot._internal.auth_handler:Performing the following challenges:
+2026-03-22 20:37:33,376:INFO:certbot._internal.auth_handler:http-01 challenge for Identifier(typ=IdentifierType(dns), value='messerschmiede-schwaiger.at')
+2026-03-22 20:37:33,376:INFO:certbot._internal.auth_handler:http-01 challenge for Identifier(typ=IdentifierType(dns), value='www.messerschmiede-schwaiger.at')
+2026-03-22 20:37:33,376:INFO:certbot._internal.plugins.webroot:Using the webroot path /data/letsencrypt-acme-challenge for all unmatched domains.
+2026-03-22 20:37:33,376:DEBUG:certbot._internal.plugins.webroot:Creating root challenges validation dir at /data/letsencrypt-acme-challenge/.well-known/acme-challenge
+2026-03-22 20:37:33,376:DEBUG:certbot._internal.plugins.webroot:Creating root challenges validation dir at /data/letsencrypt-acme-challenge/.well-known/acme-challenge
+2026-03-22 20:37:33,377:DEBUG:certbot._internal.plugins.webroot:Attempting to save validation to /data/letsencrypt-acme-challenge/.well-known/acme-challenge/DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0
+2026-03-22 20:37:33,377:DEBUG:certbot._internal.plugins.webroot:Attempting to save validation to /data/letsencrypt-acme-challenge/.well-known/acme-challenge/Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ
+2026-03-22 20:37:33,378:DEBUG:acme.client:JWS payload:
+b'{}'
+2026-03-22 20:37:33,382:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/D16sqw:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMzE2OTY1MDI2MSIsICJub25jZSI6ICJPN05yY2lNNGxTRHczSUxRbUVqNlpGblBRLU5rMEphMVFWUlBnRUh2NDQwV3Z5bzFqbTQiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2NoYWxsLzMxNjk2NTAyNjEvNjc3MDk1OTUzNjAxL0QxNnNxdyJ9",
+  "signature": "YyOjM0NB6zHcQIEStCaRWOmmDII26o4BPfM8s3mcc-VcOS45s-pUTqk4UQOeE4qRlhWO6yeUyelOaimKUP1k_zJygc86zc8AxJmLBlHjrvta_imzCVoPwFBfcfleamO8x18ZqQ3YrYe_PFJPhVgv6Acyi2IXJwWJjVVWtR8bGFj1J5nZfaqZFp4sE8Fh7eTovIQC8-9G1HBvLanb6FebM6Gl-u55nOf7YIlTHBAjgY3WwBHP1qKXAPEWgaULfB25CiCOjqAQ6UhcLNEIWh_3wUGcUMGHzGAYTRD1m22LKi2inRZSq5EnqOx7LabA4T--C6OMOWwXwehTbGUbJArc2w",
+  "payload": "e30"
+}
+2026-03-22 20:37:33,548:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/chall/3169650261/677095953601/D16sqw HTTP/1.1" 200 195
+2026-03-22 20:37:33,548:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:33 GMT
+Content-Type: application/json
+Content-Length: 195
+Connection: keep-alive
+Boulder-Requester: 3169650261
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index", <https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953601>;rel="up"
+Location: https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/D16sqw
+Replay-Nonce: O7NrciM4smAQzjeKJUuPcrRwk6HQO4DW1pWsPaz_AzAkW8Ebg0g
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "type": "http-01",
+  "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/D16sqw",
+  "status": "pending",
+  "token": "DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0"
+}
+2026-03-22 20:37:33,548:DEBUG:acme.client:Storing nonce: O7NrciM4smAQzjeKJUuPcrRwk6HQO4DW1pWsPaz_AzAkW8Ebg0g
+2026-03-22 20:37:33,548:DEBUG:acme.client:JWS payload:
+b'{}'
+2026-03-22 20:37:33,552:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/TgoQ-A:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMzE2OTY1MDI2MSIsICJub25jZSI6ICJPN05yY2lNNHNtQVF6amVLSlV1UGNyUndrNkhRTzREVzFwV3NQYXpfQXpBa1c4RWJnMGciLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2NoYWxsLzMxNjk2NTAyNjEvNjc3MDk1OTUzNjkxL1Rnb1EtQSJ9",
+  "signature": "ZIfaD8sAkKl7QaaCu19fzLjnlVnrQbFE93bXksZmBLS87qy3TMF1jmcVaFRe2BXOmszl_dAAdSzrQUJwsahpkiVQQXeN-Awm-v83IfUP_z28K3r7M1YwkF32kjCNmR1vogoYFXN7Vk_5YhdZ7oVmCdF0tZ6dutiAdQMOcQY_RQL56pMvzjr8BK9UDwImHN0rSlMO-njpTdotXhFfedosQFBenYJ1UHCw2P6LIPmGxR8Mj0kRxVWa61o0wWX4BPAwpaCFmgkul97Wmm_vp5WEr69B9YWWLb39vBiKTlodKc3UJtK050mSYcgqBG9xpXCs6YT0yu2TailaKPy4xlHsaw",
+  "payload": "e30"
+}
+2026-03-22 20:37:33,715:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/chall/3169650261/677095953691/TgoQ-A HTTP/1.1" 200 195
+2026-03-22 20:37:33,715:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:33 GMT
+Content-Type: application/json
+Content-Length: 195
+Connection: keep-alive
+Boulder-Requester: 3169650261
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index", <https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953691>;rel="up"
+Location: https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/TgoQ-A
+Replay-Nonce: O7NrciM4YtMqn-zP5M2XcYvLn1RhcFtXem7eIdHe0kN2x-kD7tg
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "type": "http-01",
+  "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/TgoQ-A",
+  "status": "pending",
+  "token": "Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ"
+}
+2026-03-22 20:37:33,716:DEBUG:acme.client:Storing nonce: O7NrciM4YtMqn-zP5M2XcYvLn1RhcFtXem7eIdHe0kN2x-kD7tg
+2026-03-22 20:37:33,716:INFO:certbot._internal.auth_handler:Waiting for verification...
+2026-03-22 20:37:34,716:DEBUG:acme.client:JWS payload:
+b''
+2026-03-22 20:37:34,720:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953601:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMzE2OTY1MDI2MSIsICJub25jZSI6ICJPN05yY2lNNFl0TXFuLXpQNU0yWGNZdkxuMVJoY0Z0WGVtN2VJZEhlMGtOMngta0Q3dGciLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzMxNjk2NTAyNjEvNjc3MDk1OTUzNjAxIn0",
+  "signature": "SB1uT-fsuJJfx3OtkKJwAqCP7qRQR4sTvAsmlzEU8C7JUuFd0SlFPjYm9Z6VCaXrJbMwDSQtqFYOFfwMmbAywLqr7qsLHpnLiDxzFSckS18I_u7snrkcw_NbSf0Xg48Gt6CCxtJhzA-T21q2lXrZv2QJpqvhPa44L7zzANxQrV-CvWxcpkNqbII5kJ_57OeFYaU5Oju14jQpebSeBMFZLEEvPjIXXEHjKVv7O0kBMn5aq24wzYS4Emd8zFyijuCjpICb92Bk3VjwI5UMoDU7CVMRgzlyPDIdoNWCBNRHIN4NzthvM5aRa_tAJL8BXNwXAkc8oNF-rp9TqI_BuLk8GQ",
+  "payload": ""
+}
+2026-03-22 20:37:35,605:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/3169650261/677095953601 HTTP/1.1" 200 1078
+2026-03-22 20:37:35,606:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:35 GMT
+Content-Type: application/json
+Content-Length: 1078
+Connection: keep-alive
+Boulder-Requester: 3169650261
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: O7NrciM4d2QZvdGsTv96mGYFzJqUL9RmTz2wZUGGN4ZDLuoEU48
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "messerschmiede-schwaiger.at"
+  },
+  "status": "invalid",
+  "expires": "2026-03-29T20:37:32Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953601/D16sqw",
+      "status": "invalid",
+      "validated": "2026-03-22T20:37:33Z",
+      "error": {
+        "type": "urn:ietf:params:acme:error:unauthorized",
+        "detail": "80.77.17.19: Invalid response from http://messerschmiede-schwaiger.at/.well-known/acme-challenge/DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0: 404",
+        "status": 403
+      },
+      "token": "DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0",
+      "validationRecord": [
+        {
+          "url": "http://messerschmiede-schwaiger.at/.well-known/acme-challenge/DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0",
+          "hostname": "messerschmiede-schwaiger.at",
+          "port": "80",
+          "addressesResolved": [
+            "80.77.17.19"
+          ],
+          "addressUsed": "80.77.17.19"
+        }
+      ]
+    }
+  ]
+}
+2026-03-22 20:37:35,606:DEBUG:acme.client:Storing nonce: O7NrciM4d2QZvdGsTv96mGYFzJqUL9RmTz2wZUGGN4ZDLuoEU48
+2026-03-22 20:37:35,607:DEBUG:acme.client:JWS payload:
+b''
+2026-03-22 20:37:35,613:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/3169650261/677095953691:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMzE2OTY1MDI2MSIsICJub25jZSI6ICJPN05yY2lNNGQyUVp2ZEdzVHY5Nm1HWUZ6SnFVTDlSbVR6MndaVUdHTjRaREx1b0VVNDgiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzMxNjk2NTAyNjEvNjc3MDk1OTUzNjkxIn0",
+  "signature": "Dqx_69bnnVdRJ-orXmPOKmoERwvsJMIIYm34vdwSn-1Dtuw4-ymk0Fi48_-5EcwrMugeI3cDLNFNC7HG1fPJelZiRuA5LRWLuQEhgbBCf3WetpAAI1jScvAkt9MMPKYuX8dBtIgVnHF-8xRbo6D8iJDzmkohAHFMx3FSOl5wqJxLi7qK8-UbQN2Z5S_pqsGcvhwg2ZpK37iVRQWnNhyLXapy33qL2f6f9R5t1zofYzGremtDrGJ-kqI04aCz2pRtfUGUzpqT0Drt66x0CStHQ085VWtOc1Oo2fvs10aWLCHIfLZOP1uZYhj1Z8J3Wll7A0Mt2b2WB0mUSGrRGAPG7g",
+  "payload": ""
+}
+2026-03-22 20:37:35,848:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/3169650261/677095953691 HTTP/1.1" 200 1125
+2026-03-22 20:37:35,848:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Sun, 22 Mar 2026 20:37:35 GMT
+Content-Type: application/json
+Content-Length: 1125
+Connection: keep-alive
+Boulder-Requester: 3169650261
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: YrllWrIAz3BoojGFWgPMgpsA4k8ICHQ53eI9YOMRfS5LZSZhVNw
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "www.messerschmiede-schwaiger.at"
+  },
+  "status": "invalid",
+  "expires": "2026-03-29T20:37:32Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/3169650261/677095953691/TgoQ-A",
+      "status": "invalid",
+      "validated": "2026-03-22T20:37:33Z",
+      "error": {
+        "type": "urn:ietf:params:acme:error:unauthorized",
+        "detail": "During secondary validation: 80.77.17.19: Invalid response from http://www.messerschmiede-schwaiger.at/.well-known/acme-challenge/Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ: 404",
+        "status": 403
+      },
+      "token": "Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ",
+      "validationRecord": [
+        {
+          "url": "http://www.messerschmiede-schwaiger.at/.well-known/acme-challenge/Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ",
+          "hostname": "www.messerschmiede-schwaiger.at",
+          "port": "80",
+          "addressesResolved": [
+            "81.10.134.21"
+          ],
+          "addressUsed": "81.10.134.21"
+        }
+      ]
+    }
+  ]
+}
+2026-03-22 20:37:35,849:DEBUG:acme.client:Storing nonce: YrllWrIAz3BoojGFWgPMgpsA4k8ICHQ53eI9YOMRfS5LZSZhVNw
+2026-03-22 20:37:35,849:INFO:certbot._internal.auth_handler:Challenge failed for domain messerschmiede-schwaiger.at
+2026-03-22 20:37:35,849:INFO:certbot._internal.auth_handler:Challenge failed for domain www.messerschmiede-schwaiger.at
+2026-03-22 20:37:35,849:INFO:certbot._internal.auth_handler:http-01 challenge for Identifier(typ=IdentifierType(dns), value='messerschmiede-schwaiger.at')
+2026-03-22 20:37:35,849:INFO:certbot._internal.auth_handler:http-01 challenge for Identifier(typ=IdentifierType(dns), value='www.messerschmiede-schwaiger.at')
+2026-03-22 20:37:35,849:DEBUG:certbot._internal.display.obj:Notifying user: 
+Certbot failed to authenticate some domains (authenticator: webroot). The Certificate Authority reported these problems:
+  Identifier: messerschmiede-schwaiger.at
+  Type:   unauthorized
+  Detail: 80.77.17.19: Invalid response from http://messerschmiede-schwaiger.at/.well-known/acme-challenge/DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0: 404
+
+  Identifier: www.messerschmiede-schwaiger.at
+  Type:   unauthorized
+  Detail: During secondary validation: 80.77.17.19: Invalid response from http://www.messerschmiede-schwaiger.at/.well-known/acme-challenge/Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ: 404
+
+Hint: The Certificate Authority failed to download the temporary challenge files created by Certbot. Ensure that the listed domains serve their content from the provided --webroot-path/-w and that files created there can be downloaded from the internet.
+
+2026-03-22 20:37:35,850:DEBUG:certbot._internal.error_handler:Encountered exception:
+Traceback (most recent call last):
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 104, in handle_authorizations
+    self._poll_authorizations(authzrs, max_retries, max_time_mins, best_effort)
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 208, in _poll_authorizations
+    raise errors.AuthorizationError('Some challenges have failed.')
+certbot.errors.AuthorizationError: Some challenges have failed.
+
+2026-03-22 20:37:35,851:DEBUG:certbot._internal.error_handler:Calling registered functions
+2026-03-22 20:37:35,851:INFO:certbot._internal.auth_handler:Cleaning up challenges
+2026-03-22 20:37:35,851:DEBUG:certbot._internal.plugins.webroot:Removing /data/letsencrypt-acme-challenge/.well-known/acme-challenge/DnijoB4dvS9KthRth9FgkllMT54omD-gF9sTCEGvdX0
+2026-03-22 20:37:35,851:DEBUG:certbot._internal.plugins.webroot:Removing /data/letsencrypt-acme-challenge/.well-known/acme-challenge/Igc_KzhmjksQZra1R4liOxmBXSEcTBVDC8dVxB-8QUQ
+2026-03-22 20:37:35,851:DEBUG:certbot._internal.plugins.webroot:All challenges cleaned up
+2026-03-22 20:37:35,851:DEBUG:certbot._internal.log:Exiting abnormally:
+Traceback (most recent call last):
+  File "/opt/certbot/bin/certbot", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/main.py", line 18, in main
+    return internal_main.main(cli_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/main.py", line 1886, in main
+    return config.func(config, plugins)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/main.py", line 1598, in certonly
+    lineage = _get_and_save_cert(le_client, config, sans, certname, lineage)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/main.py", line 143, in _get_and_save_cert
+    lineage = le_client.obtain_and_enroll_certificate(sans, certname)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/client.py", line 533, in obtain_and_enroll_certificate
+    cert, chain, key, _ = self.obtain_certificate(sans)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/client.py", line 434, in obtain_certificate
+    orderr = self._get_order_and_authorizations(csr.data, self.config.allow_subset_of_names)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/client.py", line 512, in _get_order_and_authorizations
+    authzr = self.auth_handler.handle_authorizations(orderr, self.config, best_effort)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 104, in handle_authorizations
+    self._poll_authorizations(authzrs, max_retries, max_time_mins, best_effort)
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 208, in _poll_authorizations
+    raise errors.AuthorizationError('Some challenges have failed.')
+certbot.errors.AuthorizationError: Some challenges have failed.
+2026-03-22 20:37:35,854:ERROR:certbot._internal.log:Some challenges have failed.

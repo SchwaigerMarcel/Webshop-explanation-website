@@ -1,0 +1,5 @@
+[29/Mar/2026:10:43:47 +0000] 200 - GET http 81.10.134.21 "/" [Client 204.76.203.206] [Length 568] [Gzip 1.86] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46" "-"
+[29/Mar/2026:10:52:57 +0000] 400 - - http localhost-nginx-proxy-manager "-" [Client 184.105.247.252] [Length 154] [Gzip -] "-" "-"
+[29/Mar/2026:11:16:33 +0000] 200 - GET http 81.10.134.21 "/" [Client 195.3.221.8] [Length 568] [Gzip 1.86] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46" "-"
+[29/Mar/2026:11:25:21 +0000] 404 - GET http 81.10.134.21 "/.well-known/security.txt" [Client 162.216.150.50] [Length 150] [Gzip -] "Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity" "-"
+[29/Mar/2026:11:54:17 +0000] 200 - GET http 81.10.134.21 "/" [Client 204.76.203.206] [Length 568] [Gzip 1.86] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46" "-"
