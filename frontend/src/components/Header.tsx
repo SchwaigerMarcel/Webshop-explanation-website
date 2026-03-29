@@ -6,77 +6,67 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // decodeURIComponent sorgt dafür, dass %C3%BC wieder zu "ü" wird
-const isActive = (path: string) => decodeURIComponent(location.pathname) === path;
+  const isActive = (path: string) => decodeURIComponent(location.pathname) === path;
 
-  // Varianten für das Aufklappen des Menüs
-  // Ersetze deine bisherigen menuVariants durch diese hier:
-const menuVariants = {
-  closed: {
-    opacity: 0,
-    height: 0,
-    transition: { 
-      duration: 0.3, 
-      ease: "easeInOut" 
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: { duration: 0.3, ease: "easeInOut" }
+    },
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: { duration: 0.4, ease: "easeOut" }
     }
-  },
-  open: {
-    opacity: 1,
-    height: "auto",
-    transition: { 
-      duration: 0.4, 
-      ease: "easeOut" 
-    }
-  }
-} as const; // <--- Das hier ist entscheidend!
+  } as const;
 
   return (
     <header className="sticky top-0 z-50 bg-neutral-950/95 backdrop-blur-sm border-b border-amber-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-5 group">
+        <div className="flex justify-between items-center h-20 gap-2"> {/* gap-2 verhindert direktes Zusammenstoßen */}
+
+          {/* Logo Section */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-5 group min-w-0 flex-shrink">
             <img
               src="api/images/page/logo.svg"
               alt="Logo"
-              className="w-10 h-10 sm:w-10 sm:h-10 "
+              className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0" /* Kleiner auf Mobile */
               style={{ marginBottom: "4px" }}
             />
-            <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-serif tracking-wider text-amber-500 leading-none">
+            <div className="flex flex-col min-w-0">
+              <span className="text-base sm:text-xl md:text-2xl font-serif tracking-wider text-amber-500 leading-none truncate">
                 MESSERSCHMIEDE
               </span>
-              <span className="text-[0.65rem] sm:text-sm tracking-[0.4em] text-neutral-400 -mt-0.5 uppercase">
+              <span className="text-[0.6rem] sm:text-sm tracking-[0.3em] sm:tracking-[0.4em] text-neutral-400 -mt-0.5 uppercase">
                 Schwaiger
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {["/", "/produkte", "/über-uns", "/kontakt"].map((path) => (
+          <nav className="hidden md:flex items-center gap-8 flex-shrink-0">
+            {["/", "/produkte", "/galerie", "/über-uns", "/kontakt"].map((path) => (
               <Link
                 key={path}
                 to={path}
-                className={`text-sm uppercase tracking-wide transition-colors relative ${
-                  isActive(path) ? "text-amber-500" : "text-neutral-300 hover:text-amber-500"
-                }`}
+                className={`text-sm uppercase tracking-wide transition-colors relative ${isActive(path) ? "text-amber-500" : "text-neutral-300 hover:text-amber-500"
+                  }`}
               >
                 {path === "/" ? "Home" : path.replace("/", "").replace("-", " ")}
                 {isActive(path) && (
-                  <motion.div 
-                    layoutId="underline" 
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-amber-500" 
+                  <motion.div
+                    layoutId="underline"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-amber-500"
                   />
                 )}
               </Link>
             ))}
           </nav>
 
-          {/* Mobile Menu Button - Animiertes Icon */}
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-neutral-300 hover:text-amber-500 transition-colors relative w-10 h-10 flex items-center justify-center"
+            className="md:hidden p-2 text-neutral-300 hover:text-amber-500 transition-colors relative w-10 h-10 flex flex-shrink-0 items-center justify-center"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <div className="relative w-6 h-5">
@@ -96,7 +86,7 @@ const menuVariants = {
           </button>
         </div>
 
-        {/* Mobile Navigation - Animiertes Panel */}
+        {/* Mobile Navigation Panel */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.nav
@@ -110,8 +100,9 @@ const menuVariants = {
                 {[
                   { name: "Home", path: "/" },
                   { name: "Produkte", path: "/produkte" },
+                  { name: "Galerie", path: "/galerie" },
                   { name: "Über Uns", path: "/über-uns" },
-                  { name: "Kontakt", path: "/kontakt" }
+                  { name: "Kontakt", path: "/kontakt" },
                 ].map((link, i) => (
                   <motion.div
                     key={link.path}
@@ -121,9 +112,8 @@ const menuVariants = {
                   >
                     <Link
                       to={link.path}
-                      className={`block text-lg uppercase tracking-widest px-4 py-2 transition-colors ${
-                        isActive(link.path) ? "text-amber-500" : "text-neutral-300"
-                      }`}
+                      className={`block text-lg uppercase tracking-widest px-4 py-2 transition-colors ${isActive(link.path) ? "text-amber-500" : "text-neutral-300"
+                        }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.name}

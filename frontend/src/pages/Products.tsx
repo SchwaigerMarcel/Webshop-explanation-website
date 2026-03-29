@@ -62,13 +62,13 @@ export function Products() {
 
   return (
     <div className="bg-neutral-950 min-h-screen py-12 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4"> {/* px-4 hinzugefügt für Seitenabstand auf Mobile */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-serif text-amber-500 mb-4 uppercase tracking-tighter">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-amber-500 mb-4 uppercase tracking-tighter break-words">
             Unsere Meisterstücke
           </h1>
           <div className="h-1 w-24 bg-amber-600 mx-auto mb-6"></div>
-          <p className="text-neutral-400 max-w-2xl mx-auto italic">
+          <p className="text-neutral-400 max-w-2xl mx-auto italic text-sm md:text-base leading-relaxed">
             Vom rohen Stahl zum präzisen Werkzeug. Entdecken Sie unsere handgefertigten Unikate aus der Schmiede.
           </p>
         </div>
@@ -80,8 +80,8 @@ export function Products() {
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-8 py-2 text-sm uppercase tracking-widest transition-all duration-300 border ${selectedCategory === cat
-                  ? "bg-amber-600 border-amber-600 text-white shadow-[0_0_15px_rgba(217,119,6,0.3)]"
-                  : "border-neutral-800 text-neutral-500 hover:border-amber-600/50 hover:text-amber-500"
+                ? "bg-amber-600 border-amber-600 text-white shadow-[0_0_15px_rgba(217,119,6,0.3)]"
+                : "border-neutral-800 text-neutral-500 hover:border-amber-600/50 hover:text-amber-500"
                 }`}
             >
               {cat}

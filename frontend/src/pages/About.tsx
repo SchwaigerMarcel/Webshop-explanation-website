@@ -79,7 +79,7 @@ export function About() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
   return (
-    <div className="bg-neutral-950">
+    <div className="bg-neutral-950 overflow-x-hidden">
       {/* Hero Section with Parallax */}
       <motion.section
         style={{ opacity: heroOpacity, scale: heroScale }}
@@ -94,30 +94,35 @@ export function About() {
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/60 to-neutral-950" />
         </div>
 
-        <div className="relative z-10 text-center px-4 sm:px-6 py-8">
+        {/* Container mit px-4 für seitlichen Mindestabstand auf Mobile */}
+        <div className="relative z-10 text-center px-4 sm:px-6 py-8 w-full max-w-5xl mx-auto">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.5, type: "spring" }}
-            className="mb-6 inline-block"
+            className="mb-4 sm:mb-6 inline-block"
           >
-            <Flame className="text-amber-500 w-16 h-16 sm:w-20 sm:h-20 mx-auto" />
+            <Flame className="text-amber-500 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto" />
           </motion.div>
+
           <motion.h1
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-amber-500 mb-4 sm:mb-6 leading-tight uppercase"
+            /* text-2xl für ganz kleine Handys, md:text-5xl für Desktop. break-words ist der Schutzschild. */
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-amber-500 mb-4 sm:mb-6 leading-tight uppercase tracking-tighter break-words"
           >
             Messerschmiede Schwaiger
           </motion.h1>
+
           <motion.p
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed px-2"
+            /* text-sm auf Mobile, damit "Oberösterreich" sicher reinpasst */
+            className="text-sm sm:text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed px-2"
           >
-            Ein Familienunternehmen aus Oberösterreich, das traditionelles Handwerk und Qualität in jedem handgeschmiedeten Messer vereint.
+            Ein Familienbetrieb aus Oberösterreich
           </motion.p>
         </div>
       </motion.section>
@@ -132,7 +137,7 @@ export function About() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-6 sm:mb-8 text-center">
-              FAMILIEN-HANDWERK MIT HERZ
+              HANDWERK MIT HERZ
             </h2>
           </motion.div>
 
@@ -143,7 +148,7 @@ export function About() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Bei uns dreht sich alles um echte Handwerkskunst. Als Familienunternehmen legen wir höchsten Wert auf Qualität statt Quantität. Jedes einzelne Messer wird mit Leidenschaft und Präzision von Hand geschmiedet.
+              Bei uns dreht sich alles um echte Handwerkskunst. Als Familienbetrieb legen wir höchsten Wert auf Qualität. Jedes einzelne Messer wird mit Leidenschaft und Präzision von Hand gefertigt.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, x: 50 }}
@@ -151,7 +156,7 @@ export function About() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Wir verbinden traditionelle Schmiedetechniken mit modernster Technologie. Unser  Härteofen garantiert exakte Temperaturen und damit eine perfekte Härtung für maximale Schärfe und Langlebigkeit.
+              Wir verbinden traditionelle Schmiedetechniken mit modernsten Technologien. Unser neuer Härteofen garantiert exakte Temperaturen und damit eine perfekte Härtung welche das volle Potential der verwendeten Messerstähle hervorbringt und damit feines Gefüge für maximale Schärfe und hohe Standzeit der Klinge garantiert.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, x: -50 }}
@@ -159,7 +164,7 @@ export function About() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Jedes unserer Messer ist ein Unikat - geschmiedet mit Hingabe und gehärtet mit Präzision.
+              Jedes unserer Messer ist ein Unikat - gefertigt mit Hingabe und gehärtet mit Präzision.
             </motion.p>
           </div>
         </div>
@@ -195,7 +200,7 @@ export function About() {
                 <AnimatedCounter end={59} suffix="+" />
               </div>
               <p className="text-amber-600 uppercase tracking-wide mb-1 sm:mb-2 text-xs sm:text-sm">HRC Härte</p>
-              <p className="text-neutral-400 text-xs sm:text-sm">Qualitäts Stahl</p>
+              <p className="text-neutral-400 text-xs sm:text-sm">Qualitäts Stähle</p>
             </motion.div>
 
             <motion.div
@@ -234,9 +239,9 @@ export function About() {
               className="text-center p-4 sm:p-6 bg-neutral-900/50 border border-amber-900/20 backdrop-blur-sm"
             >
               <div className="text-3xl sm:text-4xl md:text-5xl font-serif text-amber-500 mb-2 sm:mb-3 flex items-center justify-center gap-1">
-                <AnimatedCounter end={15} />
+                <AnimatedCounter end={11} />
                 <span>–</span>
-                <AnimatedCounter end={20} />
+                <AnimatedCounter end={30} />
                 <span>°</span>
               </div>
               <p className="text-amber-600 uppercase tracking-wide mb-1 sm:mb-2 text-xs sm:text-sm">
@@ -265,9 +270,9 @@ export function About() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
-              { icon: Heart, title: "Familienunternehmen", desc: "Persönlich, authentisch und mit ganzem Herzen bei der Sache", delay: 0.1 },
+              { icon: Heart, title: "Familienbetrieb", desc: "Persönlich, authentisch und mit ganzem Herzen bei der Sache", delay: 0.1 },
               { icon: ThermometerSun, title: "Präzisions-Härtung", desc: "Hochpräziser Härteofen für optimale Materialstruktur und Schärfe", delay: 0.2 },
-              { icon: Shield, title: "Premium-Stahl", desc: "Nur hochwertigste Stahlsorten mit HRC 58-62 für maximale Qualität", delay: 0.3 },
+              { icon: Shield, title: "Premium-Stähle", desc: "Nur hochwertigste Stahlsorten mit HRC 58-65 für maximale Qualität", delay: 0.3 },
               { icon: Sparkles, title: "Handgeschliffen", desc: "Jede Schneide wird von Hand gefertigt – kein Kompromiss", delay: 0.4 }
             ].map((item) => (
               <motion.div
@@ -330,7 +335,7 @@ export function About() {
               </div>
 
               <p className="text-neutral-300 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-                Wir bringen Ihre stumpfen Messer wieder auf Hochglanz
+                Wir verleihen Ihrem Messer nicht nur neuen Glanz, sondern die Schärfe, auf die es ankommt.
               </p>
 
               <div className="space-y-4">

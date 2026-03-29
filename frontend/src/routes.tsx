@@ -11,6 +11,8 @@ import { Datenschutz } from "./pages/Datenschutz";
 import { Kontakt } from "./pages/Kontakt";
 import { NotFound} from "./pages/NotFound"
 import { AdminDashboard } from "./pages/AdminDashboard";
+import { Gallery } from "./pages/Gallery";
+import { AdminGallery } from "./pages/AdminGallery";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ export const router = createBrowserRouter([
       {
         path: "Admin",
         element: <AdminDashboard />,
+      },
+      {
+        path: "galerie",
+        element: <Gallery />,
+      },
+      {
+        path: "Admin/Galerie",
+        element: <AdminGallery />,
       }
     ],
   },
