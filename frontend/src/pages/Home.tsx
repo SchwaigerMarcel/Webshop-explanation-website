@@ -108,7 +108,7 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif text-amber-500 mb-4 uppercase">Ausgewählte Messer</h2>
-            <p className="text-neutral-400">Eine Auswahl unserer handgeschmiedeten Meisterstücke</p>
+            <p className="text-neutral-400">Eine Auswahl unserer handfertigten Meisterstücke</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

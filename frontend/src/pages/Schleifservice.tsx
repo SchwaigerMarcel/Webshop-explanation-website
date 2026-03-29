@@ -3,7 +3,7 @@ import { Scissors, CheckCircle, Sparkles, Clock, Shield, Award } from "lucide-re
 
 export function Schleifservice() {
   return (
-    <div className="bg-neutral-950">
+    <div className="bg-neutral-950 w-full overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
@@ -44,7 +44,7 @@ export function Schleifservice() {
       </section>
 
       {/* Intro Section */}
-      <section className="py-12 sm:py-20 bg-neutral-900">
+      <section className="py-12 sm:py-20 bg-neutral-900 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -54,7 +54,7 @@ export function Schleifservice() {
             className="text-center"
           >
             <p className="text-neutral-300 text-base sm:text-lg leading-relaxed mb-6">
-              Ein stumpfes Messer ist nicht nur frustrierend, sondern auch gefährlich. Wir bringen Ihre Messer wieder auf Hochglanz – mit professioneller Präzision und jahrelanger Erfahrung.
+              Ein stumpfes Messer ist nicht nur frustrierend, sondern auch gefährlich. Wir verleihen Ihrem Messer nicht nur neuen Glanz, sondern die Schärfe, auf die es ankommt – mit professioneller Präzision und jahrelanger Erfahrung.
             </p>
             <p className="text-neutral-300 text-base sm:text-lg leading-relaxed">
               Egal ob Küchenmesser, Jagdmesser oder Outdoor-Werkzeug: Wir schleifen alle Messertypen fachgerecht und zuverlässig.
@@ -64,7 +64,7 @@ export function Schleifservice() {
       </section>
 
       {/* Service Options */}
-      <section className="py-12 sm:py-20 bg-neutral-950">
+      <section className="py-12 sm:py-20 bg-neutral-950 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -79,7 +79,7 @@ export function Schleifservice() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Maschinelles Schleifen */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
@@ -124,7 +124,7 @@ export function Schleifservice() {
 
             {/* Japanische Wassersteine */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
@@ -175,7 +175,7 @@ export function Schleifservice() {
       </section>
 
       {/* Process Section */}
-      <section className="py-12 sm:py-20 bg-neutral-900">
+      <section className="py-12 sm:py-20 bg-neutral-900 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -193,19 +193,19 @@ export function Schleifservice() {
                 step: "1",
                 icon: Clock,
                 title: "Messer abgeben",
-                desc: "Bringen Sie Ihre Messer persönlich vorbei oder senden Sie sie uns zu. Wir prüfen jeden Zustand."
+                desc: "Bringen Sie Ihr Messer persönlich vorbei oder senden Sie es uns zu. Wir prüfen den Zustand."
               },
               {
                 step: "2",
                 icon: Scissors,
                 title: "Professioneller Schliff",
-                desc: "Wir schleifen Ihre Messer mit der gewählten Methode – präzise und sorgfältig."
+                desc: "Wir schleifen Ihr Messer mit der gewählten Option – präzise und sorgfältig."
               },
               {
                 step: "3",
                 icon: Sparkles,
                 title: "Abholung",
-                desc: "Sie erhalten Ihre rasiermesserscharfen Messer zurück. Bereit für höchste Ansprüche."
+                desc: "Sie erhalten Ihr rasiermesserscharfes Messer zurück. Vor Ort oder per Post."
               }
             ].map((item, idx) => (
               <motion.div
@@ -233,7 +233,7 @@ export function Schleifservice() {
       </section>
 
       {/* Why Us Section */}
-      <section className="py-12 sm:py-20 bg-neutral-950">
+      <section className="py-12 sm:py-20 bg-neutral-950 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -255,12 +255,12 @@ export function Schleifservice() {
               {
                 icon: Shield,
                 title: "Sorgsame Behandlung",
-                desc: "Manueller Schliff, der Material schont und die Lebensdauer Ihrer Messer verlängert."
+                desc: "Manueller Schliff, der Material schont und die Lebensdauer Ihres Messers verlängert."
               },
               {
                 icon: Clock,
                 title: "Kurze Wartezeiten",
-                desc: "Bearbeitung innerhalb weniger Werktage nach Erhalt der Ware."
+                desc: "Bearbeitung innerhalb weniger Werktage nach Erhalt des Messers."
               },
               {
                 icon: Sparkles,
@@ -275,7 +275,7 @@ export function Schleifservice() {
               {
                 icon: Scissors,
                 title: "Breites Spektrum",
-                desc: "Fachgerechter Service für Küchenmesser, Jagdmesser und Erbstücke."
+                desc: "Fachgerechter Service für fast alle Messertypen – von Küchenmessern bis zu Outdoor-Werkzeugen."
               }
             ].map((item, idx) => (
               <motion.div
@@ -299,7 +299,7 @@ export function Schleifservice() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-neutral-900 to-neutral-950">
+      <section className="py-16 sm:py-20 bg-gradient-to-b from-neutral-900 to-neutral-950 overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -311,7 +311,7 @@ export function Schleifservice() {
               BEREIT FÜR PERFEKTE SCHÄRFE?
             </h2>
             <p className="text-base sm:text-lg text-neutral-300 mb-6 sm:mb-8 px-2">
-              Kontaktieren Sie uns für Ihren Schleiftermin oder bringen Sie Ihre Messer direkt vorbei.
+              Kontaktieren Sie uns für Ihren Schleiftermin oder bringen Sie Ihr Messer direkt vorbei.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
@@ -321,7 +321,7 @@ export function Schleifservice() {
                 Per E-Mail anfragen
               </a>
               <a
-                href="tel:+4986529876543"
+                href="tel:+4367763547065"
                 className="inline-block border border-amber-600 text-amber-500 hover:bg-amber-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 uppercase tracking-wide transition-colors text-sm sm:text-base w-full sm:w-auto text-center"
               >
                 Anrufen

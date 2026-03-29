@@ -13,6 +13,7 @@ import { NotFound} from "./pages/NotFound"
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { Gallery } from "./pages/Gallery";
 import { AdminGallery } from "./pages/AdminGallery";
+import { Services } from "./pages/ServicesPage";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "Admin/Galerie",
         element: <AdminGallery />,
+      },
+      {
+        path: "/services",
+        element: <Services />,
       }
     ],
   },

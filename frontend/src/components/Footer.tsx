@@ -36,12 +36,12 @@ export function Footer() {
                 </div>
               </div>
               <div className="flex items-center gap-3 text-neutral-400 text-sm">
-                <Phone size={16} className="text-amber-600" />
-                <span>+43 677 63547 065</span>
-              </div>
-              <div className="flex items-center gap-3 text-neutral-400 text-sm">
                 <Mail size={16} className="text-amber-600" />
                 <span>info@messerschmiede-schwaiger.at</span>
+              </div>
+              <div className="flex items-center gap-3 text-neutral-400 text-sm">
+                <Phone size={16} className="text-amber-600" />
+                <span>+43 677 63547 065</span>
               </div>
             </div>
           </div>

@@ -407,8 +407,8 @@ export function About() {
 
               <div className="space-y-3 sm:space-y-4">
                 {[
-                  { icon: ThermometerSun, text: "Präzise Temperaturkontrolle (±2°C)" },
-                  { icon: Shield, text: "Optimale Härtekurven für jeden Stahl" },
+                  { icon: ThermometerSun, text: "Präzise PID Regelung (±2°C)" },
+                  { icon: Shield, text: "Optimale Härtung für jeden Stahl" },
                   { icon: Wrench, text: "Anlassen inklusive" },
                   { icon: Sparkles, text: "Verzugsminimierung" }
                 ].map((item, idx) => (

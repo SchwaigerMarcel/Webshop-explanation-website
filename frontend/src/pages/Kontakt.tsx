@@ -30,7 +30,7 @@ export function Kontakt() {
                         Kontakt <span className="text-amber-500">aufnehmen</span>
                     </h1>
                     <p className="text-neutral-400 mt-4 max-w-xl mx-auto">
-                        Haben Sie Fragen zu unseren Messern oder wünschen Sie eine individuelle Anfertigung? Wir freuen uns auf Ihre Nachricht.
+                        Sie haben Fragen zu unseren Messern oder wünschen eine individuelle Anfertigung? Wir freuen uns auf Ihre Anfrage.
                     </p>
                 </motion.div>
 
@@ -45,8 +45,8 @@ export function Kontakt() {
                     {/* 1. Kontakt-Info Karten - Zentriertes Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
                         {[
-                            { icon: Phone, label: "Telefon", val: "+43 677 63547 065", href: "tel:+4367763547065" },
                             { icon: Mail, label: "E-Mail", val: "info@messerschmiede-schwaiger.at", href: "mailto:info@messerschmiede-schwaiger.at" },
+                            { icon: Phone, label: "Telefon", val: "+43 677 63547 065", href: "tel:+4367763547065" },
                             { icon: MapPin, label: "Werkstatt", val: "Suttnerstraße 25, 4030 Linz", href: "https://maps.google.com/?q=Suttnerstraße+25,+4030+Linz" },
                             { icon: Clock, label: "Öffnungszeiten", val: "Nach Vereinbarung", href: "#" }
                         ].map((item, i) => (

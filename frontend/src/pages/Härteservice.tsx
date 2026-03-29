@@ -108,7 +108,7 @@ export function Härteservice() {
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <p className="text-neutral-300 text-sm sm:text-base">Präzise Digitalanzeige (±2°C Toleranz)</p>
+                  <p className="text-neutral-300 text-sm sm:text-base">Präzise PID Regelung (±2°C Toleranz)</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -150,7 +150,7 @@ export function Härteservice() {
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="text-amber-500 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <p className="text-neutral-300 text-sm sm:text-base">Schutzfolie gegen Verzunderung bei Bedarf</p>
+                  <p className="text-neutral-300 text-sm sm:text-base">Schutzfolie gegen Verzunderung/Verkohlung bei Bedarf</p>
                 </div>
               </div>
             </motion.div>
@@ -177,7 +177,7 @@ export function Härteservice() {
                 step: "1",
                 icon: Users,
                 title: "Kontakt",
-                desc: "Anfrage mit Stahlsorte und Abmessungen stellen"
+                desc: "Anfrage mit Stahlsorte, Abmessungen und Bild"
               },
               {
                 step: "2",
@@ -235,7 +235,7 @@ export function Härteservice() {
             Härtung anfragen
           </h2>
           <p className="text-neutral-300 mb-8">
-            Geben Sie bitte die Stahlsorte und die Anzahl der Klingen an.
+            Geben Sie bitte Stahlsorte, Abmessungen und ein Bild der Klingen an.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="mailto:info@messerschmiede-schwaiger.at" className="bg-amber-600 text-white px-8 py-3 hover:bg-amber-700 transition-colors uppercase text-sm font-bold">

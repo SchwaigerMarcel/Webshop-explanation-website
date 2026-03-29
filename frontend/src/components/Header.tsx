@@ -46,7 +46,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8 flex-shrink-0">
-            {["/", "/produkte", "/galerie", "/über-uns", "/kontakt"].map((path) => (
+            {["/", "/produkte", "/services", "/galerie", "/über-uns", "/kontakt"].map((path) => (
               <Link
                 key={path}
                 to={path}
@@ -100,6 +100,7 @@ export function Header() {
                 {[
                   { name: "Home", path: "/" },
                   { name: "Produkte", path: "/produkte" },
+                  { name: "Services", path: "/services" },
                   { name: "Galerie", path: "/galerie" },
                   { name: "Über Uns", path: "/über-uns" },
                   { name: "Kontakt", path: "/kontakt" },
