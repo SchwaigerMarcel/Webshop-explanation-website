@@ -47,7 +47,7 @@ export function Products() {
     return (
       <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center text-amber-500">
         <Loader2 className="animate-spin mb-4" size={48} />
-        <p className="text-neutral-500 animate-pulse">Schmiedefeuer wird entfacht...</p>
+        <p className="text-neutral-500 animate-pulse">Laden...</p>
       </div>
     );
   }
