@@ -9,29 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <header class="site-header">
-      <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container">
-          <a class="navbar-brand fw-bold brand-color" href="../index.html">E-Commerce System Guide</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Navigation umschalten">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navMain">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link" href="../index.html">Übersicht</a></li>
-              <li class="nav-item"><a class="nav-link" href="shopware.html">Shopware</a></li>
-              <li class="nav-item"><a class="nav-link" href="magento.html">Magento</a></li>
-              <li class="nav-item"><a class="nav-link" href="prestashop.html">PrestaShop</a></li>
-              <li class="nav-item"><a class="nav-link" href="woocommerce.html">WooCommerce</a></li>
-              <li class="nav-item"><a class="nav-link" href="opencart.html">OpenCart</a></li>
-              <li class="nav-item"><a class="nav-link active" href="sylius.html">Sylius</a></li>
-              <li class="nav-item"><a class="nav-link active" href="newsfeed.html"><img src="../assets/images/news.png"
-                  alt="News" class="img-fluid" style="max-width: 30px; margin-top: -5px;"></a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <div w3-include-html="/components/header.html"></div>
 
     <main class="container flex-fill">
       <section class="hero text-center">
