@@ -74,6 +74,10 @@ header.site-header, footer.site-footer{
   margin-top: 1rem;
   font-size: 1.25rem;
 }
+#Example-site{
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
 
 #question{
   text-align: center;
