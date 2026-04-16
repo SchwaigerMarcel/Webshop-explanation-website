@@ -1,0 +1,1 @@
+2026/04/14 04:21:29 [warn] 325#325: *50155 using uninitialized "server" variable while logging request, client: 51.158.248.230, server: messerschmiede-schwaiger.at, request: "HEAD / HTTP/1.1", host: "messerschmiede-schwaiger.at:443"

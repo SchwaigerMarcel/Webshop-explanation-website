@@ -3,7 +3,7 @@ import { ProductCard, type Product } from "../components/ProductCard";
 import { Loader2 } from "lucide-react";
 
 // Die Kategorien sollten exakt so heißen wie im AdminDashboard
-const CATEGORIES = ["Alle", "Küchenmesser", "Jagdmesser", "Outdoor", "Klappmesser"];
+const CATEGORIES = ["Alle", "Outdoor", "Küchenmesser"];
 
 export function Products() {
   const [products, setProducts] = useState<Product[]>([]);

@@ -271,7 +271,7 @@ export function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               { icon: Heart, title: "Familienbetrieb", desc: "Persönlich, authentisch und mit ganzem Herzen bei der Sache", delay: 0.1 },
-              { icon: Shield, title: "Premium-Stähle", desc: "Hochwertige Stahlsorten mit HRC 58-65 für maximale Performance", delay: 0.3 },
+              { icon: Shield, title: "Premiumstähle", desc: "Hochwertige Stahlsorten mit HRC 58-65 für maximale Performance", delay: 0.3 },
               { icon: ThermometerSun, title: "Präzisions-Härtung", desc: "Hochpräziser Härteofen für optimale Materialstruktur und Schärfe", delay: 0.2 },
               { icon: Sparkles, title: "Handgeschliffen", desc: "Jede Schneide wird von Hand gefertigt – kein Kompromiss", delay: 0.4 }
             ].map((item) => (
