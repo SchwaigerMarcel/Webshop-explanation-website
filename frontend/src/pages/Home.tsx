@@ -40,9 +40,9 @@ export function Home() {
   }, []);
 
   return (
-    <div className="bg-neutral-950 text-white">
+    <div className="bg-neutral-950 text-white overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-8 md:py-12">
+      <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden py-8 md:py-12">
         <div className="absolute inset-0">
           {/* Korrigierter Pfad für das Hintergrundbild */}
           <img
@@ -53,8 +53,8 @@ export function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-neutral-950/50 to-neutral-950" />
         </div>
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4">
-          <div className="flex flex-col items-center justify-center text-center w-full">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 min-w-0">
+          <div className="flex flex-col items-center justify-center text-center w-full min-w-0">
             <Flame className="text-amber-500 w-10 h-10 md:w-16 md:h-16 mb-4 md:mb-6 shrink-0" />
 
             <h1 className="font-serif text-white mb-6 leading-[1.1] uppercase w-full text-[8vw] sm:text-[7vw] lg:text-7xl break-words hyphens-auto tracking-tighter sm:tracking-wide text-center">
@@ -71,7 +71,7 @@ export function Home() {
             <div className="flex justify-center w-full px-4">
               <Link
                 to="/produkte"
-                className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-5 py-3 md:px-8 md:py-4 uppercase tracking-wide transition-all text-xs sm:text-base whitespace-nowrap shadow-xl"
+                className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-5 py-3 md:px-8 md:py-4 uppercase tracking-wide transition-all text-xs sm:text-base whitespace-nowrap shadow-xl origin-center scale-150 md:scale-100"
               >
                 Messer entdecken <ArrowRight size={18} className="shrink-0" />
               </Link>
@@ -104,7 +104,7 @@ export function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="pt-10 pb-20 md:py-20 bg-neutral-950">
+      <section className="pt-2 pb-20 md:py-20 bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif text-amber-500 mb-4 uppercase">Ausgewählte Messer</h2>
@@ -147,6 +147,14 @@ export function Home() {
                 </Link>
               );
             })}
+            <div className="col-span-full flex justify-center w-full px-4">
+              <Link
+                to="/produkte"
+                className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-5 py-3 md:px-8 md:py-4 uppercase tracking-wide transition-all text-xs sm:text-base whitespace-nowrap shadow-xl origin-center scale-150 md:scale-100"
+              >
+                Alle Messer <ArrowRight size={18} className="shrink-0" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
