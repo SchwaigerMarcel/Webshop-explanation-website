@@ -148,6 +148,196 @@ header.site-header, footer.site-footer{
 
 .muted{ color: var(--muted); }
 
+/* Enhanced styling improvements */
+body {
+  background: linear-gradient(135deg, #f8f9fb 0%, #e9ecef 100%);
+  min-height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(25, 33, 47, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(25, 33, 47, 0.15);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-title {
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: var(--brand);
+}
+
+/* Shop grid improvements */
+.shop-grid .card {
+  border-radius: 15px;
+}
+
+.shop-grid .card-text {
+  line-height: 1.6;
+  color: #495057;
+}
+
+/* Knife showcase section */
+.knife-showcase {
+  margin: 3rem 0;
+  padding: 2rem 0;
+}
+
+.knife-showcase-image {
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(25, 33, 47, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.knife-showcase-image:hover {
+  transform: scale(1.02);
+}
+
+.knife-showcase-text {
+  border: none;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
+  box-shadow: 0 12px 40px rgba(13, 110, 253, 0.08);
+}
+
+.knife-showcase-text .card-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.features-list li {
+  padding: 0.8rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #495057;
+  line-height: 1.8;
+}
+
+.features-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Hero section improvements */
+.hero-bg {
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  min-height: 450px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.frosted-box {
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.frosted-box h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  letter-spacing: -0.5px;
+}
+
+.frosted-box .lead {
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* Button improvements */
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(13, 110, 253, 0.4);
+  background: linear-gradient(135deg, var(--accent), var(--brand));
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--brand);
+  color: var(--brand);
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  transform: translateY(-2px);
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+article {
+  transition: all 0.3s ease;
+}
+
+/* Footer improvements */
+.site-footer {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+/* Container max-width optimization */
+.container {
+  max-width: 1200px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .frosted-box h1 {
+    font-size: 2rem;
+  }
+  
+  .knife-showcase-text .card-title {
+    font-size: 1.4rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
 .bi{ margin-right: .35rem; }
 
 .scale {
