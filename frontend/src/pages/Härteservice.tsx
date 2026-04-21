@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"; // Falls motion/react nicht geht, wieder auf framer-motion wechseln
-import { Zap, ThermometerSun, Shield, CheckCircle, Users, Award} from "lucide-react";
+import { Zap, ThermometerSun, Shield, CheckCircle, Users, Award } from "lucide-react";
 import { useEffect } from "react";
 
 export function Härteservice() {
@@ -12,42 +12,44 @@ export function Härteservice() {
       metaDesc.setAttribute("content", "Professionelle Wärmebehandlung für Ihre Messerklingen. Digital gesteuerter Härteofen mit ±2°C Präzision für optimale Gefügebildung und Standzeit.");
     }
   }, []);
+  const heroHeight = "400px";
   return (
     <div className="bg-neutral-950">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+      <section 
+        className="relative w-full flex items-center justify-center overflow-hidden"
+        style={{ height: heroHeight }}
+      >
+        <div className="absolute inset-0 z-0 w-full" style={{ height: heroHeight }}>
           <img
             src="/api/images/page/härteservice.jpg"
             alt="Härteofen"
-            className="w-full h-full object-cover"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full min-w-full object-cover object-center"
+            // Diese Styles hier gewinnen gegen die index.html:
+            style={{ 
+              height: heroHeight, 
+              minHeight: heroHeight,
+              maxWidth: 'none' // Ersetzt !max-w-none
+            }} 
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/70 to-neutral-950" />
+          <div className="absolute inset-0 bg-black/50" style={{ height: heroHeight }} />
         </div>
 
-        <div className="relative z-10 text-center px-4 sm:px-6 py-12">
+        {/* Content */}
+        <div className="relative z-10 text-center px-4">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 0.5, type: "spring" }}
             className="mb-6 inline-block"
           >
             <ThermometerSun className="text-amber-500 w-16 h-16 sm:w-20 sm:h-20 mx-auto" />
           </motion.div>
-          <motion.h1
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-amber-500 mb-4 sm:mb-6 leading-tight uppercase"
-          >
+          
+          <motion.h1 className="text-3xl sm:text-5xl md:text-6xl font-serif text-amber-500 mb-4 uppercase">
             Härteservice
           </motion.h1>
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto px-2"
-          >
+
+          <motion.p className="text-base sm:text-xl text-neutral-300 max-w-2xl mx-auto">
             Wärmebehandlung für Messerklingen bis auf ±2°C genau
           </motion.p>
         </div>
@@ -64,7 +66,7 @@ export function Härteservice() {
             className="text-center"
           >
             <p className="text-neutral-300 text-base sm:text-lg leading-relaxed mb-6">
-              Wir übernehmen die fachgerechte Härtung Ihrer selbst geschmiedeten oder geschliffenen Klingen. 
+              Wir übernehmen die fachgerechte Härtung Ihrer selbst geschmiedeten oder geschliffenen Klingen.
             </p>
             <p className="text-neutral-300 text-base sm:text-lg leading-relaxed">
               Unser digitaler Härteofen garantiert eine Temperaturgenauigkeit von ±2°C. Dies ermöglicht ein exaktes Arbeiten nach den technischen Vorgaben der jeweiligen Stahlsorte.

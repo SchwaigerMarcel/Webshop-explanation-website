@@ -2,17 +2,33 @@ import { motion } from "framer-motion";
 import { Scissors, CheckCircle, Sparkles, Clock, Shield, Award } from "lucide-react";
 
 export function Schleifservice() {
+  // --- ZENTRALE HÖHENSTEUERUNG ---
+  const heroHeight = "450px"; 
+
   return (
     <div className="bg-neutral-950 w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+      <section 
+        className="relative w-full flex items-center justify-center overflow-hidden"
+        style={{ height: heroHeight }}
+      >
+        <div className="absolute inset-0 z-0 w-full" style={{ height: heroHeight }}>
           <img
             src="/api/images/page/schleifservice1.jpg"
             alt="Messerschleifen"
-            className="w-full h-full object-cover"
+            // Zentrierung aus der Mitte heraus
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full min-w-full object-cover object-center"
+            style={{ 
+              height: heroHeight, 
+              minHeight: heroHeight,
+              maxWidth: 'none' // Überschreibt index.html ohne !important
+            }} 
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/70 to-neutral-950" />
+          {/* Verlauf-Overlay passend zur Höhe */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-neutral-950/70 to-neutral-950" 
+            style={{ height: heroHeight }}
+          />
         </div>
 
         <div className="relative z-10 text-center px-4 sm:px-6 py-12">
@@ -28,9 +44,9 @@ export function Schleifservice() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-amber-500 mb-4 sm:mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-amber-500 mb-4 sm:mb-6 leading-tight uppercase"
           >
-            SCHLEIFSERVICE
+            Schleifservice
           </motion.h1>
           <motion.p
             initial={{ y: 30, opacity: 0 }}
@@ -71,9 +87,9 @@ export function Schleifservice() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-12 sm:mb-16 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-12 sm:mb-16 text-center uppercase"
           >
-            UNSERE SCHLEIF-OPTIONEN
+            Unsere Schleif-Optionen
           </motion.h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -182,9 +198,9 @@ export function Schleifservice() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-12 sm:mb-16 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-12 sm:mb-16 text-center uppercase"
           >
-            SO FUNKTIONIERT'S
+            So funktioniert's
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -240,9 +256,9 @@ export function Schleifservice() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-12 sm:mb-16 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-12 sm:mb-16 text-center uppercase"
           >
-            WARUM BEI UNS SCHLEIFEN?
+            Warum bei uns schleifen?
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -299,36 +315,29 @@ export function Schleifservice() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-neutral-900 to-neutral-950 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-4 sm:mb-6">
-              BEREIT FÜR PERFEKTE SCHÄRFE?
-            </h2>
-            <p className="text-base sm:text-lg text-neutral-300 mb-6 sm:mb-8 px-2">
-              Kontaktieren Sie uns für Ihren Schleiftermin oder bringen Sie Ihr Messer direkt vorbei.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="mailto:info@schwaiger-messer.de"
-                className="inline-block bg-amber-600 hover:bg-amber-700 text-white px-6 sm:px-8 py-3 sm:py-4 uppercase tracking-wide transition-colors text-sm sm:text-base w-full sm:w-auto text-center"
-              >
-                Per E-Mail anfragen
-              </a>
-              <a
-                href="tel:+4367763547065"
-                className="inline-block border border-amber-600 text-amber-500 hover:bg-amber-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 uppercase tracking-wide transition-colors text-sm sm:text-base w-full sm:w-auto text-center"
-              >
-                Anrufen
-              </a>
-            </div>
-          </motion.div>
-        </div>
+      <section className="py-16 sm:py-20 bg-gradient-to-b from-neutral-900 to-neutral-950 overflow-hidden text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto px-4"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-amber-500 mb-6 uppercase">
+            Bereit für perfekte Schärfe?
+          </h2>
+          <p className="text-base sm:text-lg text-neutral-300 mb-8 max-w-2xl mx-auto font-light">
+            Kontaktieren Sie uns für Ihren Schleiftermin oder bringen Sie Ihr Messer direkt vorbei.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="mailto:info@messerschmiede-schwaiger.at" className="bg-amber-600 text-white px-8 py-3 hover:bg-amber-700 transition-colors uppercase text-sm font-bold">
+              E-Mail Anfrage
+            </a>
+            <a href="tel:+4367763547065" className="border border-amber-600 text-amber-500 px-8 py-3 hover:bg-amber-600 hover:text-white transition-colors uppercase text-sm font-bold">
+              Anrufen
+            </a>
+          </div>
+        </motion.div>
       </section>
     </div>
   );
