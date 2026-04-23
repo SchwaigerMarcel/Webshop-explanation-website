@@ -16,6 +16,7 @@ interface Product {
 export function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const API_BASE = "https://messerschmiede-schwaiger.at/api";
+  const heroHeight = "500px";
 
   useEffect(() => {
     // --- SEO OPTIMIERUNG ---
@@ -43,14 +44,25 @@ export function Home() {
     <div className="bg-neutral-950 text-white overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden py-8 md:py-12">
-        <div className="absolute inset-0">
-          {/* Korrigierter Pfad für das Hintergrundbild */}
+        <div className="absolute inset-0 z-0 w-full" style={{ height: heroHeight }}>
+          {/* Korrigiertes Hintergrundbild */}
           <img
             src={`${API_BASE}/images/page/Schmiede.jpg`}
             alt="Schmiede"
-            className="w-full h-full object-cover"
+            // Zentrierung aus der Mitte und volle Abdeckung
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full min-w-full object-cover object-center"
+            style={{
+              height: heroHeight,
+              minHeight: heroHeight,
+              maxWidth: 'none' // Ignoriert das max-width der index.html
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-neutral-950/50 to-neutral-950" />
+
+          {/* Verlauf-Overlay passend zur festen Höhe */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-neutral-950/50 to-neutral-950"
+            style={{ height: heroHeight }}
+          />
         </div>
 
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 min-w-0">
@@ -114,7 +126,7 @@ export function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProducts.map((product) => {
               // NEUE LOGIK: Nutzt das mainImage Feld aus der server.js
-              const imagePath = product.mainImage 
+              const imagePath = product.mainImage
                 ? `${API_BASE}/images/${product.mainImage}`
                 : `${API_BASE}/images/${product.image}/main.jpg`;
 
