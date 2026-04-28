@@ -258,6 +258,64 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+body.dark-theme {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+body.dark-theme header.site-header,
+body.dark-theme footer.site-footer {
+  background-color: #111827;
+  border-color: rgba(226, 232, 240, 0.12);
+}
+
+body.dark-theme .navbar .nav-link,
+body.dark-theme .navbar-brand,
+body.dark-theme .site-footer p,
+body.dark-theme .muted,
+body.dark-theme small.text-muted,
+body.dark-theme .card-text,
+body.dark-theme .frosted-box,
+body.dark-theme .hero .lead,
+body.dark-theme .card-title {
+  color: #e2e8f0;
+}
+
+body.dark-theme .nav-link:hover,
+body.dark-theme .nav-link:focus {
+  color: #ffffff;
+}
+
+body.dark-theme .card {
+  background: #1e293b;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.45);
+}
+
+body.dark-theme .frosted-box {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+body.dark-theme .hero-bg {
+  box-shadow: 0 15px 50px rgba(15, 23, 42, 0.35);
+}
+
+body.dark-theme .card .card-title {
+  color: #60a5fa;
+}
+
+body.dark-theme .btn-outline-primary {
+  color: #cbd5e1;
+  border-color: #3b82f6;
+}
+
+body.dark-theme .btn-outline-primary:hover,
+body.dark-theme .btn-outline-primary:focus {
+  color: #ffffff;
+  background-color: rgba(59, 130, 246, 0.12);
+}
+
+
 .frosted-box h1 {
   font-weight: 700;
   font-size: 2.8rem;
