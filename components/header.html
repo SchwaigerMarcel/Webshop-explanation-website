@@ -1,20 +1,44 @@
 <header class="site-header">
-      <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container">
-          <a class="navbar-brand fw-bold brand-color" href="/index.html">E-Commerce System Guide</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Navigation umschalten">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <ul class="navbar-nav ms-auto"> 
-            <li class="nav-item"><a class="nav-link" href="../index.html">Übersicht</a></li>
-            <li class="nav-item"><a class="nav-link" href="../pages/allsites.html">Alle Shopsysteme</a></li>            <li class="nav-item"><a class="nav-link" href="shopware.html">Shopware</a></li>
-              <li class="nav-item"><a class="nav-link" href="/pages/newsfeed.html"><img src="/assets/images/news.png"
-                  alt="News" class="img-fluid" style="max-width: 30px; margin-top: -5px;"></a></li>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+      <a class="navbar-brand fw-bold brand-color" href="/index.html">E-Commerce System Guide</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+        aria-controls="navMain" aria-expanded="false" aria-label="Navigation umschalten">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Übersicht</a></li>
+        <li class="nav-item"><a class="nav-link" href="../pages/allsites.html">Alle Shopsysteme</a></li>
+        <li class="nav-item"><a class="nav-link" href="shopware.html">Shopware</a></li>
+        <li class="nav-item"><a class="nav-link" href="/pages/newsfeed.html"><img src="/assets/images/news.png"
+              alt="News" class="img-fluid" style="max-width: 30px; margin-top: -5px;"></a></li>
 
-              <li class="nav-item"><button id="themeToggle" class="btn btn-link nav-link p-0" type="button" aria-label="Night mode umschalten"><img src="/assets/images/moon.png"
-                  alt="Night mode" class="img-fluid" style="max-width: 30px; margin-top: -5px;"></button></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+        <li class="nav-item"><button id="themeToggle" class="btn btn-link nav-link p-0" type="button"
+            aria-label="Night mode umschalten">
+            
+            <!-- NUR HIER geändert -->
+            <svg width="24" height="24" viewBox="0 0 64 64"
+              xmlns="http://www.w3.org/2000/svg">
+
+              <defs>
+                <radialGradient id="moonGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFD27F" />
+                  <stop offset="60%" stop-color="#FF9E2C" />
+                  <stop offset="100%" stop-color="#FF6A00" />
+                </radialGradient>
+
+                <mask id="moonMask">
+                  <rect width="100%" height="100%" fill="white" />
+                  <circle cx="40" cy="28" r="20" fill="black" />
+                </mask>
+              </defs>
+
+              <circle cx="32" cy="32" r="20" fill="url(#moonGradient)" mask="url(#moonMask)" />
+            </svg>
+
+        </button></li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+</header>

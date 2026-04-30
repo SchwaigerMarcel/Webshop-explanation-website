@@ -442,3 +442,9 @@ body.dark-theme .bg-white {
     transform: scale(0.95);
     opacity: 0;
 }
+
+svg {
+  width: 36px;
+  height: 36px;
+  margin-top: 2px;;
+}
