@@ -34,6 +34,9 @@ This project is also connected to a real-world website:
 
 https://messerschmiede-schwaiger.at
 
+Source code:
+https://github.com/SchwaigerMarcel/Messer-Website.git
+
 It demonstrates practical application of the same development approach in a real business environment.
 
 ![Comparison](screenshots/messer.png)
