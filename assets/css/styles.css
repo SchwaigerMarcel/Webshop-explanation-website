@@ -199,6 +199,50 @@ body {
   transition: transform 0.3s ease;
 }
 
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 0;
+  }
+
+  .hero-bg .row {
+    padding: 20px 15px;
+    max-width: 95%;
+  }
+
+  .frosted-box {
+    padding: 20px 15px;
+    max-width: 95%;
+  }
+
+  .finderBox {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    padding: 1.5rem;
+  }
+
+  #finderCard {
+    margin-top: 1rem;
+  }
+
+  #finderExplanation {
+    margin-top: 1rem;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .hero .lead {
+    font-size: 1rem;
+  }
+
+  .display-4 {
+    font-size: 2.5rem;
+  }
+}
+
 .knife-showcase-image:hover {
   transform: scale(1.02);
 }
