@@ -295,7 +295,10 @@ body.dark-theme .knife-showcase-text,
 body.dark-theme .list-group-item,
 body.dark-theme .features-list li,
 body.dark-theme .nav-link,
-body.dark-theme .btn-link {
+body.dark-theme .btn-link,
+body.dark-theme #question,
+body.dark-theme #result,
+body.dark-theme #answers {
   color: #e2e8f0;
 }
 
