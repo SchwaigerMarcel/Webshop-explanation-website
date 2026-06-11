@@ -9,7 +9,17 @@ let scores = {
 
 let currentQuestion = 0;
 var card = document.getElementById("finderCard");
+const restartBtn = document.getElementById("restartBtn");
+let progressBar = document.getElementById("progressBar");
 
+const shopMeta = {
+    magento: { display: 'Magento', page: 'magento.html', img: '../assets/images/magento.png' },
+    opencart: { display: 'OpenCart', page: 'opencart.html', img: '../assets/images/opencart.png' },
+    prestashop: { display: 'PrestaShop', page: 'prestashop.html', img: '../assets/images/Prestashop.webp' },
+    shopware: { display: 'Shopware', page: 'shopware.html', img: '../assets/images/shopware.png' },
+    sylius: { display: 'Sylius', page: 'sylius.html', img: '../assets/images/sylius.png' },
+    woocommerce: { display: 'WooCommerce', page: 'woocommerce.html', img: '../assets/images/woocommerce.svg' }
+};
 const questions = [
     {
         text: "Wie groß soll dein Shop sein?",
@@ -97,6 +107,11 @@ function loadQuestion() {
 
     const answersDiv = document.getElementById("answers");
     answersDiv.innerHTML = "";
+    // update progress
+    if (progressBar) {
+        const pct = Math.round((currentQuestion / questions.length) * 100);
+        progressBar.style.width = pct + "%";
+    }
 
     q.answers.forEach((answer, index) => {
         const btn = document.createElement("button");
@@ -111,35 +126,94 @@ function loadQuestion() {
 
 function selectAnswer(answerIndex) {
     const selected = questions[currentQuestion].answers[answerIndex];
-
+    // add points
     for (const shop in selected.points) {
         scores[shop] += selected.points[shop];
     }
 
-    currentQuestion++;
+    // disable answer buttons briefly to avoid double clicks
+    const buttons = document.querySelectorAll('#answers button');
+    buttons.forEach(b => b.disabled = true);
 
-    if (currentQuestion < questions.length) {
-        loadQuestion();
-    } else {
-        showResult();
-    }
+    setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            loadQuestion();
+        } else {
+            showResult();
+        }
+    }, 220);
 }
 
 function showResult() {
-    let bestShop = "";
-    let bestScore = -1;
-
-    for (const shop in scores) {
-        if (scores[shop] > bestScore) {
-            bestScore = scores[shop];
-            bestShop = shop;
-        }
-    }
+    // prepare sorted list of shops by score
+    const list = Object.keys(scores).map(k => ({ key: k, score: scores[k] }));
+    list.sort((a, b) => b.score - a.score);
 
     document.getElementById("question").innerText = "Ergebnis";
     document.getElementById("answers").innerHTML = "";
-    document.getElementById("result").innerText =
-        "Empfohlener Shop: " + bestShop.toUpperCase();
+
+    const resultDiv = document.getElementById("result");
+    const recDiv = document.getElementById("recommendations");
+    resultDiv.innerHTML = `<p class=\"h5\">Top-Empfehlung: <strong>${shopMeta[list[0].key].display}</strong></p>`;
+
+    // show top 3 recommendations with links
+    recDiv.innerHTML = "";
+    const topN = Math.min(3, list.length);
+    for (let i = 0; i < topN; i++) {
+        const item = list[i];
+        const meta = shopMeta[item.key] || { display: item.key, page: '#' };
+
+        const wrap = document.createElement('div');
+        wrap.className = 'rec-item';
+
+        const left = document.createElement('div');
+        left.className = 'rec-left';
+        const img = document.createElement('img');
+        img.src = meta.img;
+        img.alt = meta.display + ' Logo';
+        left.appendChild(img);
+        const title = document.createElement('div');
+        title.innerHTML = `<strong>${meta.display}</strong> <div class=\"rec-score\">Punkte: ${item.score}</div>`;
+        left.appendChild(title);
+
+        const right = document.createElement('div');
+        const link = document.createElement('a');
+        link.href = meta.page;
+        link.className = 'btn btn-sm btn-outline-primary btn-shoplink';
+        link.innerText = 'Mehr erfahren';
+        right.appendChild(link);
+
+        wrap.appendChild(left);
+        wrap.appendChild(right);
+
+        recDiv.appendChild(wrap);
+    }
+
+    // show restart
+    if (restartBtn) {
+        restartBtn.classList.remove('d-none');
+        restartBtn.onclick = () => {
+            // reset
+            for (const k in scores) scores[k] = 0;
+            currentQuestion = 0;
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('recommendations').innerHTML = '';
+            // reset progress bar
+            if (progressBar) progressBar.style.width = '0%';
+            restartBtn.classList.add('d-none');
+            loadQuestion();
+        };
+    }
+
+    // ensure progress shows complete
+    if (progressBar) progressBar.style.width = '100%';
 }
 
 loadQuestion();
+
+// safety: if progressBar not present, try to find after DOM
+if (!progressBar) {
+    const pb = document.getElementById('progressBar');
+    if (pb) progressBar = pb;
+}

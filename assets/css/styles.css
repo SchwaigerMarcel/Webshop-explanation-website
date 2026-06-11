@@ -400,6 +400,79 @@ body.dark-theme .card .card-title {
   color: #60a5fa;
 }
 
+/* Shopfinder specific styles */
+.finderBox {
+  max-width: 720px;
+  margin-top: 1rem;
+  padding: 0.25rem;
+}
+
+.scale {
+  transform: translateY(0); 
+  transition: transform 360ms cubic-bezier(.2,.8,.2,1), opacity 360ms;
+  opacity: 1;
+}
+.scale-small {
+  transform: translateY(6px) scale(.995);
+  opacity: 0.98;
+}
+
+#answers .btn {
+  padding: 0.9rem 1rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  background: var(--brand);
+  color: #fff;
+  border: 1px solid rgba(13,110,253,0.12);
+  box-shadow: 0 6px 18px rgba(13,110,253,0.08);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+#answers .btn:hover {
+  transform: translateY(-3px);
+  background: #0b5ed7;
+  box-shadow: 0 10px 22px rgba(13,110,253,0.12);
+}
+#progressBar {
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+}
+
+#recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rec-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(13,110,253,0.06);
+}
+
+body.dark-theme .rec-item {
+  background: rgba(15,23,42,0.6);
+  border-color: rgba(148,163,184,0.06);
+}
+
+.rec-left {
+  display:flex; align-items:center; gap:0.75rem;
+}
+
+.rec-left img { max-width:36px; height:auto; }
+
+.rec-score { color: var(--muted); font-weight:600; margin-left:0.5rem; }
+
+.btn-shoplink { min-width: 140px; }
+
+@media (max-width:576px) {
+  .rec-item { flex-direction: column; align-items: flex-start; }
+  .btn-shoplink { width:100%; }
+}
+
 body.dark-theme .btn-outline-primary {
   color: #cbd5e1;
   border-color: #3b82f6;
