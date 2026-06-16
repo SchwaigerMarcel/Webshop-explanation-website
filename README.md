@@ -12,21 +12,22 @@ This project consists of two separate repositories:
 
 The static website containing all comparison pages, the shop recommendation tool, and the newsfeed interface.
 
+# JSON Server/API
+
 > [!IMPORTANT]
+> **Separate Backend Repository**
 >
-> ## Backend / JSON API (Separate Repository)
+> This repository contains only the frontend application.
 >
-> Der Newsfeed dieser Website wird **nicht direkt von diesem Repository bereitgestellt**.
+> The JSON API / Cloudflare Worker used by the AI Newsfeed is maintained in a separate repository:
 >
-> Die Daten stammen aus einem separaten Cloudflare-Worker-Projekt:
->
-> **JSON Server / API Repository:**
+> **Backend Repository:**
 > https://github.com/SchwaigerMarcel/Ecommerce-Worker
 >
 > **Live API Endpoint:**
 > https://ecommerce-news.marcel-8cf.workers.dev/
 >
-> Der Worker generiert und liefert die E-Commerce-News als JSON-Daten, welche von dieser Website dynamisch geladen und angezeigt werden.
+> The worker generates and serves e-commerce news and trend data as JSON, which is dynamically loaded and displayed by this website.
 
 ---
 
