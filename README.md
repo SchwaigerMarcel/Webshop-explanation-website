@@ -1,7 +1,32 @@
 # Webshop Comparison Project
 
-A beginner-friendly comparison website for popular e-commerce and webshop systems.  
-The purpose of this project is to help users understand different webshop platforms and choose the most suitable one for their needs.
+A beginner-friendly comparison website for popular e-commerce and webshop systems.
+
+The purpose of this project is to help users understand different webshop platforms and choose the most suitable solution for their needs.
+
+## Architecture
+
+This project consists of two separate repositories:
+
+### Frontend (this repository)
+
+The static website containing all comparison pages, the shop recommendation tool, and the newsfeed interface.
+
+> [!IMPORTANT]
+>
+> ## Backend / JSON API (Separate Repository)
+>
+> Der Newsfeed dieser Website wird **nicht direkt von diesem Repository bereitgestellt**.
+>
+> Die Daten stammen aus einem separaten Cloudflare-Worker-Projekt:
+>
+> **JSON Server / API Repository:**
+> https://github.com/SchwaigerMarcel/Ecommerce-Worker
+>
+> **Live API Endpoint:**
+> https://ecommerce-news.marcel-8cf.workers.dev/
+>
+> Der Worker generiert und liefert die E-Commerce-News als JSON-Daten, welche von dieser Website dynamisch geladen und angezeigt werden.
 
 ---
 
@@ -9,38 +34,50 @@ The purpose of this project is to help users understand different webshop platfo
 
 This project provides structured information about well-known webshop systems:
 
-- Shopify  
-- WooCommerce  
-- Magento  
-- PrestaShop  
-- OpenCart  
-- Shopware  
-- Sylius  
+* Shopify
+* WooCommerce
+* Magento
+* PrestaShop
+* OpenCart
+* Shopware
+* Sylius
 
 Each platform is described in a clear and simple way, focusing on:
 
-- Main features  
-- Advantages  
-- Disadvantages  
-- Typical use cases  
+* Main features
+* Advantages
+* Disadvantages
+* Typical use cases
 
 The goal is to make decision-making easier for beginners and small businesses entering e-commerce.
 
 ---
 
-## Related Project
+## Features
 
-This project is also connected to a real-world website:
+### Platform Comparison
 
-https://messerschmiede-schwaiger.at
+Compare multiple webshop systems and learn about their strengths, weaknesses, and intended use cases.
 
-Source code:
+### Shopfinder
 
-https://github.com/SchwaigerMarcel/Messer-Website.git
+An interactive questionnaire that recommends the most suitable webshop platform based on user requirements.
 
-It demonstrates practical application of the same development approach in a real business environment.
+![Shopfinder](screenshots/shopfinder.png)
 
-![Comparison](screenshots/messer.png)
+### AI Newsfeed
+
+A dynamic e-commerce news section that:
+
+* Fetches data from a separate Cloudflare Worker JSON API
+* Receives AI-generated news summaries
+* Loads content dynamically via JavaScript
+* Demonstrates frontend-backend integration
+
+**Backend Repository:**
+https://github.com/SchwaigerMarcel/Ecommerce-Worker
+
+![Newsfeed](screenshots/newsfeed.png)
 
 ---
 
@@ -48,16 +85,16 @@ It demonstrates practical application of the same development approach in a real
 
 The project consists of multiple static HTML pages:
 
-- `index.html` – Homepage and introduction  
-- `shopware.html` – Shopware overview  
-- `shopify.html` – Shopify overview  
-- `woocommerce.html` – WooCommerce overview  
-- `magento.html` – Magento overview  
-- `opencart.html` – OpenCart overview  
-- `prestashop.html` – PrestaShop overview  
-- `sylius.html` – Sylius overview  
-- `shopfinder.html` – Interactive recommendation tool  
-- `newsfeed.html` – AI-generated e-commerce news feed  
+* `index.html` – Homepage and introduction
+* `shopware.html` – Shopware overview
+* `shopify.html` – Shopify overview
+* `woocommerce.html` – WooCommerce overview
+* `magento.html` – Magento overview
+* `opencart.html` – OpenCart overview
+* `prestashop.html` – PrestaShop overview
+* `sylius.html` – Sylius overview
+* `shopfinder.html` – Interactive recommendation tool
+* `newsfeed.html` – AI-powered e-commerce news feed
 
 All pages share a consistent layout with navigation and footer.
 
@@ -65,46 +102,52 @@ All pages share a consistent layout with navigation and footer.
 
 ## Design & Layout
 
-- Clean and minimal design  
-- Blue and white color scheme  
-- Responsive layout using Bootstrap  
-- Card-based content structure  
-- Bootstrap Icons for UI elements  
-- Consistent navigation across all pages  
-![Homepage](screenshots/index.png)
+* Clean and minimal design
+* Responsive Bootstrap layout
+* Card-based content presentation
+* Bootstrap Icons
+* Consistent navigation structure
+* Mobile-friendly design
 
+![Homepage](screenshots/index.png)
 
 ![Comparison](screenshots/example.png)
 
 ---
 
-## Features
-
-### Shopfinder
-An interactive questionnaire that suggests the most suitable webshop system based on user input.
-
-![Shopfinder](screenshots/shopfinder.png)
-
-### AI Newsfeed
-A dynamic news section that:
-
-- Fetches data via a Cloudflare Worker  
-- Uses OpenAI (GPT) to generate summaries  
-- Loads content dynamically via JavaScript (`assets/scripts/newsfeed.js`)
-
-  ![Newsfeed](screenshots/newsfeed.png)
-
-This demonstrates integration of a serverless backend with a static frontend.
-
----
-
 ## Technologies Used
 
-- HTML5  
-- CSS3  
-- Bootstrap  
-- JavaScript  
-- Cloudflare Workers  
-- OpenAI API  
+### Frontend
+
+* HTML5
+* CSS3
+* Bootstrap
+* JavaScript
+
+### Backend
+
+* Cloudflare Workers
+* JSON API
+* Google Gemini API
 
 ---
+
+## Related Projects
+
+### E-Commerce Guide API
+
+Backend repository used by this project:
+
+https://github.com/SchwaigerMarcel/Ecommerce-Worker
+
+### Real-World Application
+
+This project is related to a real business website:
+
+https://messerschmiede-schwaiger.at
+
+Source code:
+
+https://github.com/SchwaigerMarcel/Messer-Website
+
+![Comparison](screenshots/messer.png)
